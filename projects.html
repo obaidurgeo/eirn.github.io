@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projects | EIRN — Environmental Innovation & Research Network</title>
+  <meta name="description" content="Explore EIRN's research and consulting projects across Bangladesh — covering coastal ecology, hydrology, urban environments, agriculture, and more."/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* FILTER BAR */
+    .filter-bar {
+      background: var(--white); border-bottom: 1px solid var(--border);
+      padding: 1.25rem 0; position: sticky; top: var(--nav-h); z-index: 50;
+    }
+    .filter-inner { display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; }
+    .filter-btn {
+      background: var(--off-white); color: var(--text-muted);
+      border: 1px solid var(--border); border-radius: 100px;
+      padding: 7px 16px; font-size: 13px; font-family: var(--ff-body);
+      cursor: pointer; transition: all 0.2s; font-weight: 400;
+    }
+    .filter-btn:hover { border-color: var(--green-400); color: var(--green-700); }
+    .filter-btn.active { background: var(--green-800); color: var(--white); border-color: var(--green-800); }
+
+    /* PROJECTS GRID */
+    #projects { background: var(--off-white); }
+    .projects-full-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--white); border-radius: 12px;
+      border: 1px solid var(--border); overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .project-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(59,109,17,0.1); }
+    .project-card[data-hidden="true"] { display: none; }
+
+    .project-img { height: 160px; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; }
+    .img-sundarban { background: linear-gradient(135deg, #1B4332, #2D6A4F); }
+    .img-haor      { background: linear-gradient(135deg, #184E77, #1E6091); }
+    .img-urban     { background: linear-gradient(135deg, #4a5e2a, #6b8c3a); }
+    .img-air       { background: linear-gradient(135deg, #7a4f00, #a66d00); }
+    .img-flood     { background: linear-gradient(135deg, #003f5c, #2f6b8c); }
+    .img-land      { background: linear-gradient(135deg, #3b1f00, #6b3d10); }
+    .img-soil      { background: linear-gradient(135deg, #5c3c11, #8a5a2b); }
+    .img-cyclone   { background: linear-gradient(135deg, #1c3a5c, #264d7a); }
+    .img-water     { background: linear-gradient(135deg, #0c4a2e, #166640); }
+
+    .project-body { padding: 1.5rem; }
+    .project-tag { display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase; color: var(--green-700); background: var(--green-50); border: 1px solid var(--green-200); padding: 3px 10px; border-radius: 100px; margin-bottom: 0.7rem; }
+    .project-title { font-family: var(--ff-display); font-size: 1.05rem; font-weight: 600; color: var(--text-dark); margin-bottom: 0.5rem; line-height: 1.35; }
+    .project-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 1rem; }
+    .project-meta { display: flex; gap: 1rem; font-size: 12px; color: var(--text-muted); padding-top: 1rem; border-top: 1px solid var(--border); }
+    .project-meta span { display: flex; align-items: center; gap: 4px; }
+
+    /* ONGOING SECTION */
+    #ongoing { background: var(--white); }
+    .ongoing-list { display: flex; flex-direction: column; gap: 1rem; }
+    .ongoing-item {
+      display: flex; align-items: center; gap: 1.5rem;
+      background: var(--off-white); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.25rem 1.5rem;
+      transition: border-color 0.2s;
+    }
+    .ongoing-item:hover { border-color: var(--green-400); }
+    .ongoing-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--green-400); flex-shrink: 0; }
+    .ongoing-title { font-weight: 500; font-size: 0.95rem; color: var(--text-dark); }
+    .ongoing-desc { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem; }
+    .ongoing-tag { margin-left: auto; flex-shrink: 0; font-size: 11px; background: var(--green-50); color: var(--green-700); padding: 4px 12px; border-radius: 100px; border: 1px solid var(--green-200); }
+
+    /* CTA */
+    .cta-band { background: linear-gradient(135deg, var(--green-800), var(--green-700)); padding: 5rem 0; text-align: center; color: white; }
+    .cta-band h2 { font-family: var(--ff-display); font-size: 2.2rem; font-weight: 700; color: white; margin-bottom: 1rem; }
+    .cta-band p { color: rgba(255,255,255,0.72); font-size: 1.05rem; max-width: 520px; margin: 0 auto 2rem; }
+    .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    @media (max-width: 900px) {
+      .projects-full-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .projects-full-grid { grid-template-columns: 1fr; }
+      .ongoing-item { flex-direction: column; align-items: flex-start; }
+      .ongoing-tag { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">
+      <div class="nav-logo">
+        <img src="images/logo.png" alt="EIRN Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'nav-logo-text\'>EI</span>'"/>
+      </div>
+      <span class="nav-brand-title">EIRN</span>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="contact.html" class="nav-cta">Work With Us</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="container page-hero-inner">
+    <div class="section-label fade-up delay-1">Our Work</div>
+    <h1 class="fade-up delay-2">Research & Projects</h1>
+    <p class="fade-up delay-3">Impactful environmental research and consulting work across Bangladesh — from the Sundarbans to Sylhet, coastal zones to urban centers.</p>
+  </div>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <div class="container filter-inner">
+    <button class="filter-btn active" data-filter="all">All Projects</button>
+    <button class="filter-btn" data-filter="coastal">Coastal & Marine</button>
+    <button class="filter-btn" data-filter="hydrology">Hydrology</button>
+    <button class="filter-btn" data-filter="urban">Urban Environment</button>
+    <button class="filter-btn" data-filter="agriculture">Agriculture</button>
+    <button class="filter-btn" data-filter="air">Air Quality</button>
+  </div>
+</div>
+
+<!-- PROJECTS GRID -->
+<section id="projects">
+  <div class="container">
+    <div class="projects-full-grid" id="projects-grid">
+
+      <div class="project-card reveal" data-category="coastal">
+        <div class="project-img img-sundarban">🌿</div>
+        <div class="project-body">
+          <div class="project-tag">Coastal Ecology</div>
+          <div class="project-title">Sundarbans Climate Resilience Assessment</div>
+          <p class="project-desc">Analyzing climate-induced changes on the world's largest mangrove ecosystem and its biodiversity using multi-source remote sensing data including Sentinel-1 SAR and Landsat OLI imagery.</p>
+          <div class="project-meta">
+            <span>🛰️ Remote Sensing</span>
+            <span>🗺️ GIS Mapping</span>
+            <span>📅 2023–2024</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal" data-category="hydrology">
+        <div class="project-img img-haor">💧</div>
+        <div class="project-body">
+          <div class="project-tag">Hydrological Modeling</div>
+          <div class="project-title">Haor Wetland Flood Dynamics</div>
+          <p class="project-desc">Modeling seasonal flood extents in northeastern Bangladesh's haor basins to understand inundation patterns, their impact on livelihoods, and adaptation pathways for vulnerable communities.</p>
+          <div class="project-meta">
+            <span>🌊 Flood Modeling</span>
+            <span>📡 SAR Data</span>
+            <span>📅 2023</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal" data-category="urban">
+        <div class="project-img img-urban">🏙️</div>
+        <div class="project-body">
+          <div class="project-tag">Urban Environment</div>
+          <div class="project-title">Dhaka Urban Heat Island Mapping</div>
+          <p class="project-desc">Spatiotemporal analysis of urban heat islands across Dhaka Metropolitan Area using Landsat thermal infrared data and machine learning classification to identify hotspots and cooling zones.</p>
+          <div class="project-meta">
+            <span>🌡️ Thermal Analysis</span>
+            <span>🤖 Machine Learning</span>
+            <span>📅 2022–2023</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal" data-category="air">
+        <div class="project-img img-air">💨</div>
+        <div class="project-body">
+          <div class="project-tag">Air Quality</div>
+          <div class="project-title">Air Pollution & Health Risk Analysis</div>
+          <p class="project-desc">Exposure modeling of PM2.5 and NO₂ concentrations across urban and industrial zones in Bangladesh to quantify environmental health burdens on local populations.</p>
+          <div class="project-meta">
+            <span>💨 Air Modeling</span>
+            <span>🏥 Health Risk</span>
+            <span>📅 2023</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal" data-category="coastal">
+        <div class="project-img img-cyclone">🌀</div>
+        <div class="project-body">
+          <div class="project-tag">Disaster Risk</div>
+          <div class="project-title">Cyclone Vulnerability Mapping</div>
+          <p class="project-desc">Integrated GIS-based vulnerability and exposure assessment for coastal communities in the Bay of Bengal delta region to inform early warning and evacuation planning.</p>
+          <div class="project-meta">
+            <span>⚡ Risk Mapping</span>
+            <span>🗺️ GIS</span>
+            <span>📅 2022</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal" data-category="agriculture">
+        <div class="project-img img-land">🌾</div>
+        <div class="project-body">
+          <div class="project-tag">Agriculture</div>
+          <div class="project-title">Crop Stress & Yield Prediction</div>
+          <p class="project-desc">UAV and satellite-derived vegetation indices (NDVI, EVI) to monitor crop health and predict yield under climate stress conditions across major agricultural districts.</p>
+          <div class="project-meta">
+            <span>🚁 UAV Survey</span>
+            <span>🌿 NDVI Analysis</span>
+            <span>📅 2023–2024</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal" data-category="hydrology">
+        <div class="project-img img-water">🏞️</div>
+        <div class="project-body">
+          <div class="project-tag">Water Resources</div>
+          <div class="project-title">Groundwater Depletion in Barind Tract</div>
+          <p class="project-desc">Assessment of groundwater level trends and recharge potential in the drought-prone Barind Tract using GRACE satellite data and field hydrogeological surveys.</p>
+          <div class="project-meta">
+            <span>💧 Groundwater</span>
+            <span>📡 GRACE Data</span>
+            <span>📅 2022–2023</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal" data-category="agriculture">
+        <div class="project-img img-soil">🌱</div>
+        <div class="project-body">
+          <div class="project-tag">Agriculture</div>
+          <div class="project-title">Soil Health Assessment — Char Lands</div>
+          <p class="project-desc">Spatial mapping of soil degradation and nutrient deficiency across riverine char lands using field sampling, laboratory analysis, and geostatistical interpolation techniques.</p>
+          <div class="project-meta">
+            <span>🌍 Soil Mapping</span>
+            <span>📊 Geostatistics</span>
+            <span>📅 2023</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal" data-category="coastal">
+        <div class="project-img img-haor" style="background:linear-gradient(135deg,#0d3b2e,#1a6651);">🐟</div>
+        <div class="project-body">
+          <div class="project-tag">Coastal Ecology</div>
+          <div class="project-title">Blue Carbon Stock Estimation</div>
+          <p class="project-desc">Estimation of carbon sequestration potential in tidal marshes and mangrove ecosystems along Bangladesh's coast to support REDD+ and carbon credit initiatives.</p>
+          <div class="project-meta">
+            <span>🌿 Carbon Stocks</span>
+            <span>🛰️ Remote Sensing</span>
+            <span>📅 2024</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ONGOING PROJECTS -->
+<section id="ongoing">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">In Progress</div>
+      <h2 class="section-title">Ongoing Research</h2>
+      <p class="section-sub">Current projects shaping our research agenda and delivering impact on the ground.</p>
+    </div>
+    <div class="ongoing-list">
+      <div class="ongoing-item reveal">
+        <div class="ongoing-dot"></div>
+        <div>
+          <div class="ongoing-title">Coastal Erosion Monitoring — Noakhali & Bhola Districts</div>
+          <div class="ongoing-desc">Multi-decadal shoreline change analysis using time-series satellite imagery and machine learning classification.</div>
+        </div>
+        <div class="ongoing-tag">Coastal Ecology</div>
+      </div>
+      <div class="ongoing-item reveal">
+        <div class="ongoing-dot"></div>
+        <div>
+          <div class="ongoing-title">Flood Forecasting System for Sylhet Division</div>
+          <div class="ongoing-desc">Integration of real-time rainfall data with HEC-HMS for operational flash flood early warning.</div>
+        </div>
+        <div class="ongoing-tag">Hydrology</div>
+      </div>
+      <div class="ongoing-item reveal">
+        <div class="ongoing-dot"></div>
+        <div>
+          <div class="ongoing-title">UAV-Based Paddy Field Health Assessment — Rajshahi</div>
+          <div class="ongoing-desc">High-resolution drone mapping and multispectral analysis for boro season crop health monitoring.</div>
+        </div>
+        <div class="ongoing-tag">Agriculture</div>
+      </div>
+      <div class="ongoing-item reveal">
+        <div class="ongoing-dot"></div>
+        <div>
+          <div class="ongoing-title">Urban Green Space Mapping — Chittagong City</div>
+          <div class="ongoing-desc">Satellite-based mapping of urban tree canopy and green spaces to support city climate adaptation planning.</div>
+        </div>
+        <div class="ongoing-tag">Urban Environment</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-band">
+  <div class="container reveal">
+    <h2>Have a Project in Mind?</h2>
+    <p>We collaborate with government agencies, NGOs, and research institutions. Let's discuss how EIRN can support your goals.</p>
+    <div class="cta-actions">
+      <a href="contact.html" class="btn-primary">Start a Conversation</a>
+      <a href="about.html" class="btn-outline">Learn About Our Approach</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand-title">EIRN</div>
+      <p class="footer-brand-desc">Environmental Innovation & Research Network — advancing ecological science for a resilient Bangladesh through geospatial technology and evidence-based research.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Pages</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="about.html#services">GIS & Spatial Analysis</a></li>
+        <li><a href="about.html#services">Remote Sensing</a></li>
+        <li><a href="about.html#services">UAV Surveys</a></li>
+        <li><a href="about.html#services">Environmental Modeling</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:contact@eirn.org">contact@eirn.org</a></li>
+        <li><a href="#">eirn.com.bd</a></li>
+        <li><a href="#">Dhaka, Bangladesh</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 <span>EIRN</span>. All rights reserved.</span>
+    <span>Environmental Innovation & Research Network · Dhaka, Bangladesh</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+  // Filter functionality
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const projectCards = document.querySelectorAll('.project-card');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      projectCards.forEach(card => {
+        const match = filter === 'all' || card.dataset.category === filter;
+        card.setAttribute('data-hidden', match ? 'false' : 'true');
+      });
+    });
+  });
+</script>
+</body>
+</html>
