@@ -1,22 +1,28 @@
 body {
   font-family: Arial;
   margin: 0;
+  background: #f8f9fb;
 }
 
+/* HERO */
 .hero {
-  background: #0a3d62;
+  height: 80vh;
+  background: linear-gradient(rgba(10,61,98,0.7), rgba(10,61,98,0.7)),
+              url('https://images.unsplash.com/photo-1472214103451-9374bd1c798e');
+  background-size: cover;
   color: white;
   text-align: center;
-  padding: 40px;
+  padding-top: 100px;
 }
 
 .logo {
-  width: 120px;
+  width: 100px;
 }
 
+/* NAV */
 nav {
-  background: #1e5f74;
-  padding: 10px;
+  background: #0a3d62;
+  padding: 15px;
   text-align: center;
 }
 
@@ -27,20 +33,32 @@ nav a {
   font-weight: bold;
 }
 
+/* SECTION */
 section {
-  padding: 40px;
+  max-width: 1000px;
+  margin: auto;
+  padding: 50px 20px;
 }
 
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+  gap: 20px;
+}
+
+/* CARD */
 .card {
-  background: #f4f4f4;
-  padding: 20px;
-  margin: 20px 0;
+  background: white;
+  padding: 25px;
   border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 }
 
+/* FOOTER */
 footer {
   background: #0a3d62;
   color: white;
   text-align: center;
-  padding: 10px;
+  padding: 20px;
 }
