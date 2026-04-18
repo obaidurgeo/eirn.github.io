@@ -1,215 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Contact | EIRN — Environmental Innovation & Research Network</title>
-  <meta name="description" content="Get in touch with EIRN for environmental consulting, research collaboration, or partnership inquiries."/>
-  <link rel="stylesheet" href="style.css"/>
-  <style>
-    /* CONTACT LAYOUT */
-    #contact-main { background: var(--white); }
-    .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: start; }
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Contact | EIRN — Environmental Innovation & Research Network</title>
+<meta name="description" content="Contact EIRN for environmental consulting, research collaboration or partnership inquiries. Based in Dhaka, Bangladesh."/>
+<link rel="stylesheet" href="style.css"/>
+<style>
+#contact-main{background:var(--white)}
+.ct-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:5rem;align-items:start}
 
-    /* INFO SIDE */
-    .contact-info-title { font-family: var(--ff-display); font-size: 1.15rem; font-weight: 600; color: var(--text-dark); margin-bottom: 1.5rem; }
-    .contact-info-desc { color: var(--text-mid); font-size: 0.97rem; line-height: 1.8; margin-bottom: 2rem; }
+/* INFO */
+.ct-desc{color:var(--mid);font-size:.97rem;line-height:1.82;margin-bottom:2rem}
+.ct-details{display:flex;flex-direction:column;gap:.85rem;margin-bottom:2.5rem}
+.ct-detail{display:flex;align-items:flex-start;gap:1rem;padding:1rem 1.2rem;background:var(--off);border:1px solid var(--border);border-radius:12px;transition:border-color .25s,transform .25s}
+.ct-detail:hover{border-color:var(--g300);transform:translateX(4px)}
+.ct-detail-ico{font-size:20px;flex-shrink:0;margin-top:2px}
+.ct-detail-lbl{font-size:10.5px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);font-weight:600;margin-bottom:3px}
+.ct-detail-val{font-size:.93rem;color:var(--dark)}
+.ct-detail-val a{color:var(--g600);text-decoration:none}
+.ct-detail-val a:hover{text-decoration:underline}
+.ct-soc-ttl{font-size:11px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;color:var(--muted);margin-bottom:.75rem}
+.ct-soc{display:flex;gap:.6rem;flex-wrap:wrap}
+.ct-soc a{display:flex;align-items:center;gap:7px;background:var(--off);border:1px solid var(--border);border-radius:8px;padding:8px 15px;font-size:12.5px;font-weight:500;color:var(--mid);text-decoration:none;transition:border-color .2s,color .2s,transform .2s}
+.ct-soc a:hover{border-color:var(--g300);color:var(--g600);transform:translateY(-2px)}
 
-    .contact-details { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2.5rem; }
-    .contact-detail {
-      display: flex; align-items: flex-start; gap: 1rem;
-      padding: 1rem 1.25rem; background: var(--off-white);
-      border: 1px solid var(--border); border-radius: 10px;
-    }
-    .contact-detail-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
-    .contact-detail-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); font-weight: 500; margin-bottom: 3px; }
-    .contact-detail-val { font-size: 0.95rem; color: var(--text-dark); font-weight: 400; }
-    .contact-detail-val a { color: var(--green-700); text-decoration: none; }
-    .contact-detail-val a:hover { text-decoration: underline; }
+/* FORM BOX */
+.form-box{background:var(--off);border:1px solid var(--border);border-radius:18px;padding:2.5rem;box-shadow:var(--sh-sm)}
+.form-ttl{font-family:var(--ff-d);font-size:1.4rem;font-weight:600;color:var(--dark);margin-bottom:.4rem}
+.form-sub{font-size:.88rem;color:var(--muted);margin-bottom:2rem;line-height:1.65}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.f-group{margin-bottom:1.1rem}
+.f-group label{display:block;font-size:12.5px;font-weight:600;color:var(--mid);margin-bottom:.4rem;letter-spacing:.2px}
+.f-group input,.f-group select,.f-group textarea{width:100%;padding:11px 14px;background:var(--white);border:1px solid var(--border);border-radius:var(--rs);font-family:var(--ff-b);font-size:14px;color:var(--dark);outline:none;transition:border-color .22s,box-shadow .22s}
+.f-group input:focus,.f-group select:focus,.f-group textarea:focus{border-color:var(--g400);box-shadow:0 0 0 3px rgba(90,150,48,.12)}
+.f-group input.err,.f-group textarea.err{border-color:#e05252}
+.f-group textarea{resize:vertical;min-height:125px}
+.f-group select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23587039' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+.form-btn{width:100%;background:var(--g600);color:#fff;border:none;border-radius:var(--rs);padding:14px;font-family:var(--ff-b);font-size:15px;font-weight:500;cursor:pointer;transition:background .25s,transform .2s;letter-spacing:.3px;position:relative;overflow:hidden}
+.form-btn::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,.1);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.form-btn:hover{background:var(--g800);transform:translateY(-2px)}
+.form-btn:hover::after{transform:scaleX(1)}
+.form-note{font-size:11.5px;color:var(--muted);text-align:center;margin-top:.9rem}
 
-    .social-row { display: flex; gap: 0.75rem; flex-wrap: wrap; }
-    .social-btn {
-      display: flex; align-items: center; gap: 8px;
-      background: var(--off-white); border: 1px solid var(--border);
-      border-radius: 8px; padding: 9px 16px; text-decoration: none;
-      font-size: 13px; font-weight: 500; color: var(--text-mid);
-      transition: border-color 0.2s, color 0.2s;
-    }
-    .social-btn:hover { border-color: var(--green-400); color: var(--green-700); }
+/* FAQ */
+#faq{background:var(--off)}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.faq-item{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.faq-q{font-weight:500;font-size:.93rem;color:var(--dark);padding:1.2rem 1.4rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;transition:background .2s}
+.faq-q:hover{background:var(--g20)}
+.faq-ico{font-size:18px;flex-shrink:0;transition:transform .3s;color:var(--muted)}
+.faq-item.open .faq-ico{transform:rotate(45deg);color:var(--g400)}
+.faq-a{font-size:.87rem;color:var(--muted);line-height:1.72;max-height:0;overflow:hidden;transition:max-height .38s var(--ease),padding .3s}
+.faq-item.open .faq-a{max-height:200px;padding:0 1.4rem 1.2rem}
 
-    /* FORM SIDE */
-    .contact-form-box {
-      background: var(--off-white); border: 1px solid var(--border);
-      border-radius: 16px; padding: 2.5rem;
-    }
-    .form-title { font-family: var(--ff-display); font-size: 1.3rem; font-weight: 600; color: var(--text-dark); margin-bottom: 0.5rem; }
-    .form-subtitle { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 2rem; line-height: 1.6; }
+/* SERVICES MINI */
+#services-mini{background:var(--white)}
+.services-mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.sm-item{background:var(--off);border:1px solid var(--border);border-radius:12px;padding:1.25rem;display:flex;gap:.9rem;align-items:flex-start;transition:border-color .25s,transform .25s}
+.sm-item:hover{border-color:var(--g300);transform:translateY(-3px)}
+.sm-ico{font-size:22px;flex-shrink:0}
+.sm-t{font-weight:500;font-size:.9rem;color:var(--dark);margin-bottom:.2rem}
+.sm-d{font-size:.82rem;color:var(--muted);line-height:1.55}
 
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .form-group { margin-bottom: 1.25rem; }
-    .form-group label { display: block; font-size: 13px; font-weight: 500; color: var(--text-mid); margin-bottom: 0.4rem; }
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%; padding: 11px 14px;
-      background: var(--white); border: 1px solid var(--border);
-      border-radius: 8px; font-family: var(--ff-body); font-size: 14px;
-      color: var(--text-dark); outline: none;
-      transition: border-color 0.2s;
-    }
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus { border-color: var(--green-400); }
-    .form-group textarea { resize: vertical; min-height: 130px; }
-    .form-group select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b8a48' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; }
-
-    .form-submit {
-      width: 100%; background: var(--green-700); color: var(--white);
-      border: none; border-radius: 8px; padding: 14px;
-      font-family: var(--ff-body); font-size: 15px; font-weight: 500;
-      cursor: pointer; transition: background 0.2s;
-    }
-    .form-submit:hover { background: var(--green-900); }
-    .form-note { font-size: 12px; color: var(--text-muted); text-align: center; margin-top: 1rem; }
-
-    /* MAP PLACEHOLDER */
-    #map-section { background: var(--off-white); }
-    .map-placeholder {
-      background: linear-gradient(135deg, var(--green-900), var(--green-800));
-      border-radius: 16px; height: 320px;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      color: rgba(255,255,255,0.7); text-align: center; gap: 1rem;
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-    .map-placeholder-icon { font-size: 3rem; }
-    .map-placeholder h3 { font-family: var(--ff-display); color: white; font-size: 1.3rem; }
-    .map-placeholder p { font-size: 0.9rem; max-width: 360px; line-height: 1.6; }
-
-    /* FAQ */
-    #faq { background: var(--white); }
-    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-    .faq-item { padding: 1.5rem; background: var(--off-white); border: 1px solid var(--border); border-radius: 10px; }
-    .faq-q { font-weight: 500; color: var(--text-dark); font-size: 0.95rem; margin-bottom: 0.6rem; }
-    .faq-a { font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; }
-
-    /* CTA */
-    .cta-band { background: linear-gradient(135deg, var(--green-800), var(--green-700)); padding: 4rem 0; text-align: center; color: white; }
-    .cta-band h2 { font-family: var(--ff-display); font-size: 2rem; font-weight: 700; color: white; margin-bottom: 0.75rem; }
-    .cta-band p { color: rgba(255,255,255,0.72); font-size: 1rem; max-width: 480px; margin: 0 auto 1.75rem; }
-
-    @media (max-width: 900px) {
-      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .faq-grid { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 600px) {
-      .form-row { grid-template-columns: 1fr; }
-      .contact-form-box { padding: 1.5rem; }
-    }
-  </style>
+@media(max-width:960px){.ct-grid{grid-template-columns:1fr;gap:2.5rem}.faq-grid{grid-template-columns:1fr}.services-mini-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.f-row{grid-template-columns:1fr}.form-box{padding:1.5rem}.services-mini-grid{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
+<div id="cur"></div><div id="cur-r"></div>
 
 <nav>
-  <div class="nav-inner">
+  <div class="nav-in">
     <a class="nav-brand" href="index.html">
-      <div class="nav-logo">
-        <img src="images/logo.png" alt="EIRN Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'nav-logo-text\'>EI</span>'"/>
-      </div>
-      <span class="nav-brand-title">EIRN</span>
+      <div class="nav-logo"><img src="images/logo.png" alt="EIRN" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=nav-logo-fb>EI</span>'"/></div>
+      <div class="nav-nm"><span class="nav-nm-m">EIRN</span><span class="nav-nm-s">Environmental Research Network</span></div>
     </a>
-    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="nav-tog" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="projects.html">Projects</a></li>
       <li><a href="contact.html">Contact</a></li>
-      <li><a href="contact.html" class="nav-cta">Work With Us</a></li>
+      <li><a href="contact.html" class="ncta">Work With Us</a></li>
     </ul>
   </div>
 </nav>
 
-<!-- PAGE HERO -->
-<div class="page-hero">
-  <div class="container page-hero-inner">
-    <div class="section-label fade-up delay-1">Get In Touch</div>
-    <h1 class="fade-up delay-2">Contact EIRN</h1>
-    <p class="fade-up delay-3">Whether you're a government body, NGO, research institution, or private organization — we'd love to hear from you.</p>
+<div class="ph">
+  <canvas id="ph-canvas"></canvas>
+  <div class="ph-ov"></div>
+  <div class="container ph-in">
+    <div class="label" style="justify-content:center;color:var(--g200)"><span></span>Get In Touch</div>
+    <h1 style="animation:fadeHero .7s ease both .2s;opacity:0">Contact EIRN</h1>
+    <p style="animation:fadeHero .7s ease both .38s;opacity:0">Whether you're a government body, NGO, research institution or private organization — we'd love to hear from you.</p>
   </div>
 </div>
+<style>@keyframes fadeHero{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}</style>
 
-<!-- CONTACT MAIN -->
+<!-- MAIN CONTACT -->
 <section id="contact-main">
   <div class="container">
-    <div class="contact-grid">
-
+    <div class="ct-grid">
       <!-- INFO -->
-      <div class="reveal">
-        <p class="contact-info-desc">EIRN collaborates with a wide range of partners to deliver environmental research and consulting services. If you have a project, research question, or partnership idea — reach out and let's start a conversation.</p>
-        <div class="contact-details">
-          <div class="contact-detail">
-            <div class="contact-detail-icon">📧</div>
-            <div>
-              <div class="contact-detail-label">Email</div>
-              <div class="contact-detail-val"><a href="mailto:contact@eirn.org">contact@eirn.org</a></div>
-            </div>
-          </div>
-          <div class="contact-detail">
-            <div class="contact-detail-icon">🌐</div>
-            <div>
-              <div class="contact-detail-label">Website</div>
-              <div class="contact-detail-val">eirn.com.bd <span style="color:var(--text-muted); font-size:0.8rem;">(coming soon)</span></div>
-            </div>
-          </div>
-          <div class="contact-detail">
-            <div class="contact-detail-icon">📍</div>
-            <div>
-              <div class="contact-detail-label">Location</div>
-              <div class="contact-detail-val">Dhaka, Bangladesh</div>
-            </div>
-          </div>
-          <div class="contact-detail">
-            <div class="contact-detail-icon">🕐</div>
-            <div>
-              <div class="contact-detail-label">Office Hours</div>
-              <div class="contact-detail-val">Sunday – Thursday, 9:00 AM – 6:00 PM BST</div>
-            </div>
-          </div>
+      <div class="rv-l">
+        <div class="label">Reach Out</div>
+        <h2 class="s-title">Let's Start a Conversation</h2>
+        <p class="ct-desc">EIRN collaborates with a wide range of partners to deliver environmental research and consulting services. If you have a project, research question or partnership idea — reach out.</p>
+        <div class="ct-details">
+          <div class="ct-detail"><div class="ct-detail-ico">📧</div><div><div class="ct-detail-lbl">Email</div><div class="ct-detail-val"><a href="mailto:contact@eirn.org">contact@eirn.org</a></div></div></div>
+          <div class="ct-detail"><div class="ct-detail-ico">🌐</div><div><div class="ct-detail-lbl">Website</div><div class="ct-detail-val">eirn.com.bd <span style="color:var(--muted);font-size:.8rem">(coming soon)</span></div></div></div>
+          <div class="ct-detail"><div class="ct-detail-ico">📍</div><div><div class="ct-detail-lbl">Location</div><div class="ct-detail-val">Dhaka, Bangladesh</div></div></div>
+          <div class="ct-detail"><div class="ct-detail-ico">🕐</div><div><div class="ct-detail-lbl">Office Hours</div><div class="ct-detail-val">Sun – Thu, 9:00 AM – 6:00 PM BST</div></div></div>
         </div>
-        <div style="margin-bottom:1rem; font-size:13px; font-weight:500; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">Follow EIRN</div>
-        <div class="social-row">
-          <a href="#" class="social-btn">🔗 LinkedIn</a>
-          <a href="#" class="social-btn">🐦 Twitter/X</a>
-          <a href="#" class="social-btn">📘 Facebook</a>
-          <a href="#" class="social-btn">🔬 ResearchGate</a>
+        <div class="ct-soc-ttl">Follow EIRN</div>
+        <div class="ct-soc">
+          <a href="#">🔗 LinkedIn</a>
+          <a href="#">🐦 Twitter/X</a>
+          <a href="#">📘 Facebook</a>
+          <a href="#">🔬 ResearchGate</a>
+        </div>
+        <div style="margin-top:2rem;padding:1.2rem 1.4rem;background:var(--g50);border:1px solid rgba(90,150,48,.2);border-radius:12px">
+          <div style="font-size:.85rem;color:var(--g600);font-weight:500;margin-bottom:.3rem">⚡ Quick Response</div>
+          <div style="font-size:.83rem;color:var(--muted)">We typically respond within 2–3 business days. For urgent inquiries, email us directly.</div>
         </div>
       </div>
-
       <!-- FORM -->
-      <div class="contact-form-box reveal">
-        <div class="form-title">Send Us a Message</div>
-        <div class="form-subtitle">Fill in the form and our team will get back to you within 2–3 business days.</div>
+      <div class="form-box rv-r">
+        <div class="form-ttl">Send Us a Message</div>
+        <div class="form-sub">Fill in the form below and our team will get back to you promptly.</div>
         <form id="contact-form" novalidate>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="fname">First Name *</label>
-              <input type="text" id="fname" name="fname" placeholder="Md. Ashraful" required/>
-            </div>
-            <div class="form-group">
-              <label for="lname">Last Name *</label>
-              <input type="text" id="lname" name="lname" placeholder="Islam" required/>
-            </div>
+          <div class="f-row">
+            <div class="f-group"><label for="fn">First Name *</label><input type="text" id="fn" name="fn" placeholder="Md. Ashraful" required/></div>
+            <div class="f-group"><label for="ln">Last Name *</label><input type="text" id="ln" name="ln" placeholder="Islam" required/></div>
           </div>
-          <div class="form-group">
-            <label for="email">Email Address *</label>
-            <input type="email" id="email" name="email" placeholder="your@organization.org" required/>
-          </div>
-          <div class="form-group">
-            <label for="org">Organization</label>
-            <input type="text" id="org" name="org" placeholder="Ministry / NGO / University / Company"/>
-          </div>
-          <div class="form-group">
+          <div class="f-group"><label for="em">Email Address *</label><input type="email" id="em" name="em" placeholder="your@organization.org" required/></div>
+          <div class="f-group"><label for="org">Organization</label><input type="text" id="org" name="org" placeholder="Ministry / NGO / University / Company"/></div>
+          <div class="f-group">
             <label for="type">Inquiry Type</label>
             <select id="type" name="type">
               <option value="">Select inquiry type…</option>
@@ -217,35 +143,32 @@
               <option>Consulting Services</option>
               <option>Government / Policy Advisory</option>
               <option>NGO Partnership</option>
-              <option>Data / GIS Services</option>
+              <option>GIS / Data Services</option>
               <option>UAV / Drone Survey</option>
+              <option>Training & Capacity Building</option>
               <option>General Inquiry</option>
             </select>
           </div>
-          <div class="form-group">
-            <label for="message">Message *</label>
-            <textarea id="message" name="message" placeholder="Briefly describe your project, question, or partnership idea…" required></textarea>
-          </div>
-          <button type="submit" class="form-submit">Send Message</button>
-          <div class="form-note">We respect your privacy. Your information will not be shared with third parties.</div>
+          <div class="f-group"><label for="msg">Message *</label><textarea id="msg" name="msg" placeholder="Briefly describe your project, question or partnership idea…" required></textarea></div>
+          <button type="submit" class="form-btn">Send Message →</button>
+          <div class="form-note">🔒 Your information is kept private and will not be shared with third parties.</div>
         </form>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- MAP -->
-<section id="map-section">
-  <div class="container reveal">
-    <div class="section-header">
-      <div class="section-label">Location</div>
-      <h2 class="section-title">Find Us in Dhaka</h2>
-    </div>
-    <div class="map-placeholder">
-      <div class="map-placeholder-icon">📍</div>
-      <h3>Dhaka, Bangladesh</h3>
-      <p>You can embed a Google Maps iframe here by replacing this placeholder with your office location map.</p>
+<!-- SERVICES MINI -->
+<section id="services-mini">
+  <div class="container">
+    <div class="s-head rv"><div class="label">How We Can Help</div><h2 class="s-title">Common Inquiry Types</h2></div>
+    <div class="services-mini-grid stag">
+      <div class="sm-item"><div class="sm-ico">🗺️</div><div><div class="sm-t">GIS & Mapping Projects</div><div class="sm-d">Spatial analysis, thematic maps, and geographic data for planning and decision-making.</div></div></div>
+      <div class="sm-item"><div class="sm-ico">🛰️</div><div><div class="sm-t">Remote Sensing Analysis</div><div class="sm-d">Satellite image processing for land cover, vegetation, and change detection studies.</div></div></div>
+      <div class="sm-item"><div class="sm-ico">🚁</div><div><div class="sm-t">UAV Field Surveys</div><div class="sm-d">Drone-based aerial mapping, photogrammetry, and high-resolution imagery acquisition.</div></div></div>
+      <div class="sm-item"><div class="sm-ico">🌊</div><div><div class="sm-t">Flood & Hydrology Studies</div><div class="sm-d">Hydrological modeling, flood risk assessment, and watershed analysis.</div></div></div>
+      <div class="sm-item"><div class="sm-ico">📋</div><div><div class="sm-t">EIA & Policy Consulting</div><div class="sm-d">Environmental impact assessments and policy advisory for government and developers.</div></div></div>
+      <div class="sm-item"><div class="sm-ico">🎓</div><div><div class="sm-t">Training & Workshops</div><div class="sm-d">GIS, remote sensing, and environmental modeling training for professionals and students.</div></div></div>
     </div>
   </div>
 </section>
@@ -253,90 +176,65 @@
 <!-- FAQ -->
 <section id="faq">
   <div class="container">
-    <div class="section-header reveal">
-      <div class="section-label">FAQ</div>
-      <h2 class="section-title">Frequently Asked Questions</h2>
-    </div>
-    <div class="faq-grid">
-      <div class="faq-item reveal">
-        <div class="faq-q">What types of organizations does EIRN work with?</div>
-        <div class="faq-a">EIRN collaborates with government ministries, local and international NGOs, development banks, research universities, and private sector companies with environmental compliance needs.</div>
-      </div>
-      <div class="faq-item reveal">
-        <div class="faq-q">Can EIRN assist with Environmental Impact Assessments (EIA)?</div>
-        <div class="faq-a">Yes. EIRN provides full EIA services aligned with Bangladesh Department of Environment (DoE) guidelines and international standards such as IFC Performance Standards.</div>
-      </div>
-      <div class="faq-item reveal">
-        <div class="faq-q">Does EIRN conduct field surveys and drone operations?</div>
-        <div class="faq-a">Absolutely. We have an in-house UAV team equipped to conduct aerial surveys, photogrammetric mapping, and multispectral image acquisition anywhere in Bangladesh.</div>
-      </div>
-      <div class="faq-item reveal">
-        <div class="faq-q">How can I collaborate with EIRN on a research project?</div>
-        <div class="faq-a">We welcome academic and institutional research partnerships. Reach out through the contact form above or email us directly with your proposal or idea to start a discussion.</div>
-      </div>
-      <div class="faq-item reveal">
-        <div class="faq-q">Does EIRN offer training in GIS and remote sensing?</div>
-        <div class="faq-a">Yes, EIRN periodically offers technical training workshops in GIS, remote sensing, and environmental modeling for professionals and students. Contact us to be notified of upcoming sessions.</div>
-      </div>
-      <div class="faq-item reveal">
-        <div class="faq-q">What geographic areas does EIRN primarily operate in?</div>
-        <div class="faq-a">Our primary focus is Bangladesh, with particular expertise in coastal zones, river delta systems, haor regions, and major urban centers. We also support projects in neighboring South Asian countries.</div>
-      </div>
+    <div class="s-head rv"><div class="label">FAQ</div><h2 class="s-title">Frequently Asked Questions</h2></div>
+    <div class="faq-grid stag">
+      <div class="faq-item"><div class="faq-q">What types of organizations does EIRN work with?<span class="faq-ico">+</span></div><div class="faq-a">EIRN collaborates with government ministries, local and international NGOs, development banks, research universities and private sector companies with environmental compliance needs.</div></div>
+      <div class="faq-item"><div class="faq-q">Can EIRN assist with Environmental Impact Assessments?<span class="faq-ico">+</span></div><div class="faq-a">Yes. EIRN provides full EIA services aligned with Bangladesh Department of Environment (DoE) guidelines and international standards such as IFC Performance Standards.</div></div>
+      <div class="faq-item"><div class="faq-q">Does EIRN conduct field surveys and drone operations?<span class="faq-ico">+</span></div><div class="faq-a">Absolutely. We have an in-house UAV team equipped to conduct aerial surveys, photogrammetric mapping and multispectral image acquisition anywhere in Bangladesh.</div></div>
+      <div class="faq-item"><div class="faq-q">How can I collaborate on a research project?<span class="faq-ico">+</span></div><div class="faq-a">We welcome academic and institutional research partnerships. Reach out through the contact form above or email us directly with your proposal to start a discussion.</div></div>
+      <div class="faq-item"><div class="faq-q">Does EIRN offer GIS and remote sensing training?<span class="faq-ico">+</span></div><div class="faq-a">Yes, EIRN periodically offers technical training workshops in GIS, remote sensing and environmental modeling for professionals and students. Contact us to be notified.</div></div>
+      <div class="faq-item"><div class="faq-q">What geographic areas does EIRN operate in?<span class="faq-ico">+</span></div><div class="faq-a">Our primary focus is Bangladesh, with expertise in coastal zones, river delta systems, haor regions and urban centers. We also support projects in neighboring South Asian countries.</div></div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<div class="cta-band">
-  <div class="container reveal">
-    <h2>Let's Make an Impact Together</h2>
-    <p>Explore our past work or learn more about the EIRN team and our mission.</p>
-    <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
-      <a href="projects.html" class="btn-primary">View Our Projects</a>
-      <a href="about.html" class="btn-outline">About EIRN</a>
-    </div>
-  </div>
-</div>
+<div class="cta-band"><div class="container rv"><h2>Let's Make an Impact Together</h2><p>Explore our past work or learn more about the EIRN team and mission.</p><div class="cta-acts"><a href="projects.html" class="btn btn-p">View Our Projects <span class="arr">→</span></a><a href="about.html" class="btn btn-gh">About EIRN</a></div></div></div>
 
 <footer>
-  <div class="footer-inner">
-    <div>
-      <div class="footer-brand-title">EIRN</div>
-      <p class="footer-brand-desc">Environmental Innovation & Research Network — advancing ecological science for a resilient Bangladesh through geospatial technology and evidence-based research.</p>
-    </div>
-    <div class="footer-col">
-      <h4>Pages</h4>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Services</h4>
-      <ul>
-        <li><a href="about.html#services">GIS & Spatial Analysis</a></li>
-        <li><a href="about.html#services">Remote Sensing</a></li>
-        <li><a href="about.html#services">UAV Surveys</a></li>
-        <li><a href="about.html#services">Environmental Modeling</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <ul>
-        <li><a href="mailto:contact@eirn.org">contact@eirn.org</a></li>
-        <li><a href="#">eirn.com.bd</a></li>
-        <li><a href="#">Dhaka, Bangladesh</a></li>
-      </ul>
-    </div>
+  <div class="ft-grid">
+    <div><div class="ft-nm">EIRN</div><p class="ft-desc">Environmental Innovation & Research Network — advancing ecological science for a resilient Bangladesh through geospatial technology and research.</p><div class="ft-soc"><a href="#" title="LinkedIn">🔗</a><a href="#" title="Twitter">🐦</a><a href="#" title="Facebook">📘</a><a href="#" title="ResearchGate">🔬</a></div></div>
+    <div class="ft-col"><h4>Pages</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="projects.html">Projects</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="ft-col"><h4>Services</h4><ul><li><a href="about.html#services">GIS & Spatial</a></li><li><a href="about.html#services">Remote Sensing</a></li><li><a href="about.html#services">UAV Surveys</a></li><li><a href="about.html#services">Env. Modeling</a></li></ul></div>
+    <div class="ft-col"><h4>Contact</h4><ul><li><a href="mailto:contact@eirn.org">contact@eirn.org</a></li><li><a href="#">eirn.com.bd (soon)</a></li><li><a href="#">Dhaka, Bangladesh</a></li></ul></div>
   </div>
-  <div class="footer-bottom">
-    <span>© 2025 <span>EIRN</span>. All rights reserved.</span>
-    <span>Environmental Innovation & Research Network · Dhaka, Bangladesh</span>
-  </div>
+  <div class="ft-bot"><span>© 2025 <em>EIRN</em>. All rights reserved.</span><span>Environmental Innovation & Research Network · Dhaka, Bangladesh</span></div>
 </footer>
 
 <script src="script.js"></script>
+<script>
+initParticles(document.getElementById('ph-canvas'),{count:45,speed:.3,color:'rgba(100,170,55,.5)',lineColor:'rgba(90,150,48,.15)',maxDist:120});
+
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.addEventListener('click',()=>{
+    const item=q.closest('.faq-item');
+    const isOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!isOpen)item.classList.add('open');
+  });
+});
+
+// Enhanced form validation
+const form=document.getElementById('contact-form');
+if(form){
+  form.addEventListener('submit',e=>{
+    e.preventDefault();
+    let valid=true;
+    form.querySelectorAll('[required]').forEach(f=>{
+      if(!f.value.trim()){f.classList.add('err');valid=false}
+      else f.classList.remove('err');
+    });
+    const em=document.getElementById('em');
+    if(em&&em.value&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em.value)){em.classList.add('err');valid=false}
+    if(!valid)return;
+    const btn=form.querySelector('.form-btn');
+    btn.textContent='✓ Message Sent!';
+    btn.style.background='var(--g400)';
+    btn.disabled=true;
+    setTimeout(()=>{btn.textContent='Send Message →';btn.style.background='';btn.disabled=false;form.reset()},4000);
+  });
+  form.querySelectorAll('[required]').forEach(f=>f.addEventListener('input',()=>f.classList.remove('err')));
+}
+</script>
 </body>
 </html>
