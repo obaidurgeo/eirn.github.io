@@ -4,10 +4,12 @@
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Projects | EIRN — Environmental Innovation & Research Network</title>
 <meta name="description" content="EIRN research and consulting projects across Bangladesh — coastal ecology, hydrology, urban environment, agriculture and more."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link rel="stylesheet" href="style.css"/>
 <style>
 /* FILTER */
-.filter-bar{background:var(--white);border-bottom:1px solid var(--border);padding:1.2rem 0;position:sticky;top:var(--nav-h);z-index:50;backdrop-filter:blur(12px)}
+.filter-bar{background:rgba(245,249,239,.95);border-bottom:1px solid var(--border);padding:1.2rem 0;position:sticky;top:var(--nav-h);z-index:50;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
 .filter-in{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center}
 .f-btn{background:var(--off);color:var(--muted);border:1px solid var(--border);border-radius:100px;padding:7px 18px;font-size:13px;font-family:var(--ff-b);cursor:pointer;transition:all .22s;font-weight:400}
 .f-btn:hover{border-color:var(--g300);color:var(--g600)}
@@ -20,8 +22,8 @@
 /* ONGOING */
 #ongoing{background:var(--white)}
 .og-list{display:flex;flex-direction:column;gap:.9rem}
-.og-item{display:flex;align-items:center;gap:1.5rem;background:var(--off);border:1px solid var(--border);border-radius:12px;padding:1.2rem 1.5rem;transition:border-color .25s,transform .25s}
-.og-item:hover{border-color:var(--g300);transform:translateX(5px)}
+.og-item{display:flex;align-items:center;gap:1.5rem;background:var(--off);border:1px solid var(--border);border-radius:12px;padding:1.2rem 1.5rem;transition:border-color .25s,transform .25s,box-shadow .25s}
+.og-item:hover{border-color:var(--g300);transform:translateX(5px);box-shadow:var(--sh-sm)}
 .og-dot{width:10px;height:10px;border-radius:50%;background:var(--g400);flex-shrink:0;animation:glow 2s ease-in-out infinite}
 @keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(90,150,48,0)}50%{box-shadow:0 0 0 5px rgba(90,150,48,.2)}}
 .og-title{font-weight:500;font-size:.94rem;color:var(--dark)}
@@ -29,30 +31,34 @@
 .og-tag{margin-left:auto;flex-shrink:0;font-size:10.5px;background:var(--g50);color:var(--g600);padding:4px 13px;border-radius:100px;border:1px solid rgba(90,150,48,.22);font-weight:500}
 
 /* IMPACT */
-#impact{background:var(--g850);position:relative;overflow:hidden}
+#impact{background:var(--g850);position:relative;z-index:1;overflow:hidden}
 #impact::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:50px 50px}
 #impact .s-title{color:#fff}
 #impact .label{color:var(--g300)}
 #impact .label::before{background:var(--g300)}
 #impact .s-sub{color:rgba(255,255,255,.55)}
 .impact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2.5rem;position:relative;z-index:1}
-.im-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:var(--r);padding:1.75rem 1.5rem;transition:background .25s,border-color .25s,transform .25s}
-.im-card:hover{background:rgba(90,150,48,.12);border-color:rgba(90,150,48,.3);transform:translateY(-4px)}
+.im-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:var(--r);padding:1.75rem 1.5rem;transition:background .25s,border-color .25s,transform .25s,box-shadow .25s}
+.im-card:hover{background:rgba(90,150,48,.12);border-color:rgba(90,150,48,.3);transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.3),0 0 0 1px rgba(90,150,48,.2)}
 .im-ico{font-size:28px;margin-bottom:1rem}
-.im-n{font-family:var(--ff-d);font-size:2.2rem;font-weight:600;color:var(--g200);line-height:1;margin-bottom:.4rem}
+.im-n{font-family:var(--ff-d);font-size:2.2rem;font-weight:600;background:linear-gradient(135deg,var(--g200),var(--g100));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:.4rem}
 .im-l{font-size:.88rem;color:rgba(255,255,255,.55)}
+
+/* SECTION DIVIDER */
+.sec-div{height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent);border:none;margin:0}
 
 @media(max-width:900px){.pj-grid{grid-template-columns:1fr 1fr}.impact-grid{grid-template-columns:1fr 1fr}.og-item{flex-direction:column;align-items:flex-start}.og-tag{margin-left:0}}
 @media(max-width:600px){.pj-grid{grid-template-columns:1fr}.impact-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
+<canvas id="bg-canvas"></canvas>
 <div id="cur"></div><div id="cur-r"></div>
 
 <nav>
   <div class="nav-in">
     <a class="nav-brand" href="index.html">
-      <div class="nav-logo"><img src="images/logo.png" alt="EIRN" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=nav-logo-fb>EI</span>'"/></div>
+      <div class="nav-logo"><img src="images/logo.png" alt="EIRN" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=nav-logo-fb>EI</span>'"/></div>
       <div class="nav-nm"><span class="nav-nm-m">EIRN</span><span class="nav-nm-s">Environmental Innovation and Research Network</span></div>
     </a>
     <button class="nav-tog" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -66,8 +72,7 @@
   </div>
 </nav>
 
-<div class="ph">
-  <canvas id="ph-canvas"></canvas>
+<div class="ph" style="position:relative;z-index:1">
   <div class="ph-ov"></div>
   <div class="container ph-in">
     <div class="label" style="justify-content:center;color:var(--g200)"><span></span>Our Work</div>
@@ -189,6 +194,8 @@
   </div>
 </section>
 
+<hr class="sec-div"/>
+
 <!-- ONGOING -->
 <section id="ongoing">
   <div class="container">
@@ -224,16 +231,17 @@
     <div><div class="ft-nm">EIRN</div><p class="ft-desc">Environmental Innovation & Research Network — advancing ecological science for a resilient Bangladesh through geospatial technology and research.</p><div class="ft-soc"><a href="#" title="LinkedIn">🔗</a><a href="#" title="Twitter">🐦</a><a href="#" title="Facebook">📘</a><a href="#" title="ResearchGate">🔬</a></div></div>
     <div class="ft-col"><h4>Pages</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="projects.html">Projects</a></li><li><a href="contact.html">Contact</a></li></ul></div>
     <div class="ft-col"><h4>Categories</h4><ul><li><a href="#">Coastal & Marine</a></li><li><a href="#">Hydrology</a></li><li><a href="#">Urban Environment</a></li><li><a href="#">Agriculture</a></li></ul></div>
-    <div class="ft-col"><h4>Contact</h4><ul><li><a href="mailto:contact@eirn.org">contact@eirn.org</a></li><li><a href="#">eirn.com.bd (soon)</a></li><li><a href="#">Dhaka, Bangladesh</a></li></ul></div>
+    <div class="ft-col"><h4>Contact</h4><ul><li><a href="mailto:contact@eirn.org">contact@eirn.org</a></li><li><a href="#">eirn.com.bd</a></li><li><a href="#">Dhaka, Bangladesh</a></li></ul></div>
   </div>
   <div class="ft-bot"><span>© 2025 <em>EIRN</em>. All rights reserved.</span><span>Environmental Innovation & Research Network · Dhaka, Bangladesh</span></div>
 </footer>
 
 <script src="script.js"></script>
 <script>
-initParticles(document.getElementById('ph-canvas'),{count:45,speed:.3,color:'rgba(100,170,55,.5)',lineColor:'rgba(90,150,48,.15)',maxDist:120});
+initParticles(document.getElementById('bg-canvas'), {count:90, speed:.35});
+document.addEventListener('DOMContentLoaded',()=>document.body.classList.add('loaded'));
 
-// Enhanced filter with count badge
+// Enhanced filter
 const btns=document.querySelectorAll('.f-btn');
 const cards=document.querySelectorAll('.pj-card');
 const noRes=document.getElementById('no-results');
