@@ -2,20 +2,23 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=2"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>EIRN | Environmental Innovation & Research Network</title>
 <meta name="description" content="Bangladesh-based environmental consultancy using GIS, remote sensing, UAV technology and environmental modeling to solve ecological and agricultural challenges."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link rel="stylesheet" href="style.css"/>
 <style>
 /* ── HERO ── */
-.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;background:linear-gradient(160deg,var(--g900) 0%,var(--g850) 40%,var(--g800) 75%,var(--g700) 100%)}
-#hero-canvas{position:absolute;inset:0;z-index:0}
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;z-index:1;overflow:hidden;background:linear-gradient(160deg,var(--g900) 0%,var(--g850) 40%,var(--g800) 75%,var(--g700) 100%)}
 .hero-orbs{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
 .orb{position:absolute;border-radius:50%;filter:blur(80px);animation:orbFloat 12s ease-in-out infinite alternate}
 .orb1{width:420px;height:420px;background:radial-gradient(circle,rgba(90,150,48,.18) 0%,transparent 70%);top:-100px;right:-80px;animation-duration:14s}
 .orb2{width:300px;height:300px;background:radial-gradient(circle,rgba(50,110,20,.14) 0%,transparent 70%);bottom:-80px;left:15%;animation-duration:18s;animation-delay:-5s}
 .orb3{width:220px;height:220px;background:radial-gradient(circle,rgba(196,160,53,.08) 0%,transparent 70%);top:40%;left:60%;animation-duration:22s;animation-delay:-9s}
 @keyframes orbFloat{from{transform:translate(0,0) scale(1)}to{transform:translate(30px,20px) scale(1.06)}}
+/* Fade-out at bottom of hero into next section */
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:100px;background:linear-gradient(to bottom,transparent,var(--off));pointer-events:none;z-index:3}
 .hero-in{position:relative;z-index:2;padding-top:var(--nav-h)}
 .hero-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(90,150,48,.14);border:1px solid rgba(90,150,48,.28);color:var(--g100);font-size:12px;font-weight:500;padding:6px 16px;border-radius:100px;margin-bottom:2rem;letter-spacing:.5px;animation:fadeHero .7s ease both .2s;opacity:0}
 .hero-pill::before{content:'';width:7px;height:7px;background:var(--g300);border-radius:50%;animation:pulse 2s infinite}
@@ -32,11 +35,14 @@
 .hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:4.5rem;padding-top:3.5rem;border-top:1px solid rgba(255,255,255,.08);animation:fadeHero .7s ease both .88s;opacity:0}
 .h-stat{text-align:center;padding:1rem .5rem;border-right:1px solid rgba(255,255,255,.07)}
 .h-stat:last-child{border-right:none}
-.h-stat-n{font-family:var(--ff-d);font-size:2.4rem;font-weight:600;color:var(--g300);line-height:1;display:block}
+.h-stat-n{font-family:var(--ff-d);font-size:2.4rem;font-weight:600;background:linear-gradient(135deg,var(--g300),var(--g200));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;display:block}
 .h-stat-l{font-size:12px;color:rgba(255,255,255,.45);margin-top:5px;letter-spacing:.3px}
-.hero-scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:6px;color:rgba(255,255,255,.35);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;animation:fadeHero .7s ease both 1s;opacity:0}
+.hero-scroll{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:6px;color:rgba(255,255,255,.35);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;animation:fadeHero .7s ease both 1s;opacity:0}
 .hero-scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,rgba(255,255,255,.35),transparent);animation:scrollPulse 2s ease-in-out infinite}
 @keyframes scrollPulse{0%,100%{transform:scaleY(1);opacity:.4}50%{transform:scaleY(1.2);opacity:.8}}
+
+/* ── SECTION DIVIDER ── */
+.sec-div{height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent);border:none;margin:0}
 
 /* ── ABOUT ── */
 #about{background:var(--white)}
@@ -75,7 +81,6 @@
 .sb-item{text-align:center;padding:2rem 1.5rem;border-right:1px solid rgba(255,255,255,.08);transition:background .25s}
 .sb-item:hover{background:rgba(255,255,255,.04)}
 .sb-item:last-child{border:none}
-.sb-n{font-family:var(--ff-d);font-size:3rem;font-weight:600;color:var(--g200);line-height:1;display:block;margin-bottom:.4rem}
 .sb-suffix{font-size:2rem}
 .sb-l{font-size:13px;color:rgba(255,255,255,.5);letter-spacing:.3px}
 
@@ -105,6 +110,7 @@
 </head>
 <body>
 
+<canvas id="bg-canvas"></canvas>
 <div id="cur"></div>
 <div id="cur-r"></div>
 
@@ -113,7 +119,7 @@
   <div class="nav-in">
     <a class="nav-brand" href="index.html">
       <div class="nav-logo">
-        <img src="images/logo.png" alt="EIRN" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=nav-logo-fb>EI</span>'"/>
+        <img src="images/logo.png" alt="EIRN" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=nav-logo-fb>EI</span>'"/>
       </div>
       <div class="nav-nm">
         <span class="nav-nm-m">EIRN</span>
@@ -133,7 +139,6 @@
 
 <!-- HERO -->
 <section class="hero">
-  <canvas id="hero-canvas"></canvas>
   <div class="hero-orbs">
     <div class="orb orb1"></div>
     <div class="orb orb2"></div>
@@ -187,6 +192,8 @@
     </div>
   </div>
 </section>
+
+<hr class="sec-div"/>
 
 <!-- SERVICES -->
 <section id="services">
@@ -304,7 +311,7 @@
     </div>
     <div class="ft-col"><h4>Pages</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="projects.html">Projects</a></li><li><a href="contact.html">Contact</a></li></ul></div>
     <div class="ft-col"><h4>Services</h4><ul><li><a href="about.html#services">GIS & Spatial Analysis</a></li><li><a href="about.html#services">Remote Sensing</a></li><li><a href="about.html#services">UAV Surveys</a></li><li><a href="about.html#services">Environmental Modeling</a></li></ul></div>
-    <div class="ft-col"><h4>Contact</h4><ul><li><a href="mailto:contact@eirn.org">contact@eirn.org</a></li><li><a href="#">eirn.com.bd (coming soon)</a></li><li><a href="#">Dhaka, Bangladesh</a></li></ul></div>
+    <div class="ft-col"><h4>Contact</h4><ul><li><a href="mailto:contact@eirn.org">contact@eirn.org</a></li><li><a href="#">eirn.com.bd</a></li><li><a href="#">Dhaka, Bangladesh</a></li></ul></div>
   </div>
   <div class="ft-bot">
     <span>© 2025 <em>EIRN</em>. All rights reserved.</span>
@@ -314,8 +321,8 @@
 
 <script src="script.js"></script>
 <script>
-// Hero particle canvas
-initParticles(document.getElementById('hero-canvas'),{count:65,speed:.35,color:'rgba(120,185,70,.55)',lineColor:'rgba(90,150,48,.18)',maxDist:140});
+// Full-page white particle background
+initParticles(document.getElementById('bg-canvas'), {count:90, speed:.35});
 
 // Typing animation
 typeText(document.getElementById('hero-type-el'),[
@@ -324,6 +331,9 @@ typeText(document.getElementById('hero-type-el'),[
   'Working with Government & NGOs in Bangladesh.',
   'From the Sundarbans to the Himalayas.',
 ]);
+
+// Mark body loaded
+document.addEventListener('DOMContentLoaded',()=>document.body.classList.add('loaded'));
 </script>
 </body>
 </html>
