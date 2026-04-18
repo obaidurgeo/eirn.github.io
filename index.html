@@ -1,240 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>EIRN | Environmental Innovation & Research Network</title>
-  <meta name="description" content="EIRN is a Bangladesh-based environmental consultancy using GIS, remote sensing, UAV, and environmental modeling to solve ecological and agricultural challenges."/>
-  <link rel="stylesheet" href="style.css"/>
-  <style>
-    /* ── HOME-ONLY STYLES ── */
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>EIRN | Environmental Innovation & Research Network</title>
+<meta name="description" content="Bangladesh-based environmental consultancy using GIS, remote sensing, UAV technology and environmental modeling to solve ecological and agricultural challenges."/>
+<link rel="stylesheet" href="style.css"/>
+<style>
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;background:linear-gradient(160deg,var(--g900) 0%,var(--g850) 40%,var(--g800) 75%,var(--g700) 100%)}
+#hero-canvas{position:absolute;inset:0;z-index:0}
+.hero-orbs{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);animation:orbFloat 12s ease-in-out infinite alternate}
+.orb1{width:420px;height:420px;background:radial-gradient(circle,rgba(90,150,48,.18) 0%,transparent 70%);top:-100px;right:-80px;animation-duration:14s}
+.orb2{width:300px;height:300px;background:radial-gradient(circle,rgba(50,110,20,.14) 0%,transparent 70%);bottom:-80px;left:15%;animation-duration:18s;animation-delay:-5s}
+.orb3{width:220px;height:220px;background:radial-gradient(circle,rgba(196,160,53,.08) 0%,transparent 70%);top:40%;left:60%;animation-duration:22s;animation-delay:-9s}
+@keyframes orbFloat{from{transform:translate(0,0) scale(1)}to{transform:translate(30px,20px) scale(1.06)}}
+.hero-in{position:relative;z-index:2;padding-top:var(--nav-h)}
+.hero-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(90,150,48,.14);border:1px solid rgba(90,150,48,.28);color:var(--g100);font-size:12px;font-weight:500;padding:6px 16px;border-radius:100px;margin-bottom:2rem;letter-spacing:.5px;animation:fadeHero .7s ease both .2s;opacity:0}
+.hero-pill::before{content:'';width:7px;height:7px;background:var(--g300);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.85)}}
+@keyframes fadeHero{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.hero h1{font-family:var(--ff-d);font-size:clamp(2.6rem,5.5vw,4.2rem);font-weight:600;color:#fff;line-height:1.15;letter-spacing:-.5px;margin-bottom:1.4rem;animation:fadeHero .7s ease both .38s;opacity:0}
+.hero h1 em{color:var(--g300);font-style:normal;position:relative}
+.hero h1 em::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--g400),var(--g200));border-radius:2px}
+.hero-sub{font-size:1.12rem;color:rgba(255,255,255,.7);max-width:580px;line-height:1.8;margin-bottom:.75rem;animation:fadeHero .7s ease both .52s;opacity:0}
+.hero-type{font-size:1.05rem;color:var(--g200);font-weight:500;margin-bottom:2.2rem;min-height:1.6em;animation:fadeHero .7s ease both .64s;opacity:0}
+.hero-type-cursor{display:inline-block;width:2px;height:1.1em;background:var(--g300);margin-left:2px;vertical-align:middle;animation:blink .8s step-end infinite}
+@keyframes blink{50%{opacity:0}}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeHero .7s ease both .76s;opacity:0}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:4.5rem;padding-top:3.5rem;border-top:1px solid rgba(255,255,255,.08);animation:fadeHero .7s ease both .88s;opacity:0}
+.h-stat{text-align:center;padding:1rem .5rem;border-right:1px solid rgba(255,255,255,.07)}
+.h-stat:last-child{border-right:none}
+.h-stat-n{font-family:var(--ff-d);font-size:2.4rem;font-weight:600;color:var(--g300);line-height:1;display:block}
+.h-stat-l{font-size:12px;color:rgba(255,255,255,.45);margin-top:5px;letter-spacing:.3px}
+.hero-scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:6px;color:rgba(255,255,255,.35);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;animation:fadeHero .7s ease both 1s;opacity:0}
+.hero-scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,rgba(255,255,255,.35),transparent);animation:scrollPulse 2s ease-in-out infinite}
+@keyframes scrollPulse{0%,100%{transform:scaleY(1);opacity:.4}50%{transform:scaleY(1.2);opacity:.8}}
 
-    /* HERO */
-    .hero {
-      background: linear-gradient(
-          rgba(15, 40, 20, 0.85),
-          rgba(15, 40, 20, 0.85)
-        ),
-        url('images/hero-bg.jpg') center/cover no-repeat;
-    }
-    .hero::before {
-      content: ''; position: absolute; inset: 0; pointer-events: none;
-      background-image:
-        radial-gradient(circle at 72% 28%, rgba(151,196,89,0.13) 0%, transparent 55%),
-        radial-gradient(circle at 18% 78%, rgba(99,153,34,0.09) 0%, transparent 45%),
-        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-      background-size: auto, auto, 60px 60px, 60px 60px;
-    }
-    .hero-inner { position: relative; z-index: 2; max-width: 760px; }
-    .hero-tag {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(151,196,89,0.14); border: 1px solid rgba(151,196,89,0.3);
-      color: var(--green-200); font-size: 13px; font-weight: 500;
-      padding: 6px 14px; border-radius: 100px; margin-bottom: 2rem; letter-spacing: 0.5px;
-    }
-    .hero-tag::before { content: '●'; font-size: 8px; color: var(--green-400); }
-    .hero h1 {
-      font-family: var(--ff-display); font-size: clamp(2.4rem, 5vw, 3.8rem);
-      font-weight: 700; color: var(--white); line-height: 1.2;
-      margin-bottom: 1.5rem; letter-spacing: -0.5px;
-    }
-    .hero h1 em { color: var(--green-400); font-style: normal; }
-    .hero p {
-      font-size: 1.15rem; color: rgba(255,255,255,0.78);
-      max-width: 600px; margin-bottom: 2.5rem; line-height: 1.75;
-    }
-    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .hero-stats {
-      display: flex; gap: 3rem; flex-wrap: wrap;
-      margin-top: 4rem; padding-top: 3rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
-    }
-    .stat-num {
-      font-family: var(--ff-display); font-size: 2rem; font-weight: 700;
-      color: var(--green-400); line-height: 1;
-    }
-    .stat-label { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 4px; }
+/* ── ABOUT ── */
+#about{background:var(--white)}
+.ab-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.ab-text p{color:var(--mid);font-size:.98rem;line-height:1.85;margin-bottom:1.1rem}
+.ab-checks{display:flex;flex-direction:column;gap:.85rem;margin:1.6rem 0}
+.ab-quote{margin-top:1.75rem;padding:1.1rem 1.4rem;background:var(--g20);border-left:3px solid var(--g400);border-radius:0 var(--rs) var(--rs) 0;font-style:italic;font-size:.9rem;color:var(--muted);font-family:var(--ff-d)}
+.ab-visual{display:flex;flex-direction:column;gap:.9rem}
+.ab-badge{display:flex;align-items:center;gap:13px;padding:13px 18px;border-radius:12px;font-size:14px;font-weight:500;color:var(--g50);transition:transform .25s,box-shadow .25s}
+.ab-badge:hover{transform:translateX(6px);box-shadow:var(--sh-md)}
+.ab-badge-ico{font-size:21px}
+.ab1{background:var(--g700)}.ab2{background:var(--g600)}.ab3{background:var(--g500)}.ab4{background:var(--g600)}.ab5{background:var(--g700)}.ab6{background:var(--g800)}
 
-    /* ABOUT STRIP */
-    #about { background: var(--white); }
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-    .about-badges { display: flex; flex-direction: column; gap: 0.9rem; }
-    .about-badge {
-      display: flex; align-items: center; gap: 12px;
-      background: var(--green-800); color: var(--green-100);
-      padding: 12px 18px; border-radius: 10px; font-size: 14px; font-weight: 500;
-    }
-    .about-badge.light { background: var(--green-700); }
-    .about-badge.lighter { background: var(--green-600); }
-    .about-badge-icon { font-size: 20px; }
-    .about-desc { color: var(--text-mid); font-size: 1rem; line-height: 1.8; margin-bottom: 1rem; }
-    .about-highlights { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem; }
-    .about-highlight { display: flex; align-items: flex-start; gap: 10px; font-size: 0.95rem; color: var(--text-mid); }
-    .about-quote {
-      margin-top: 1.5rem; padding: 1rem 1.25rem;
-      background: var(--green-50); border-left: 3px solid var(--green-400);
-      border-radius: 0 8px 8px 0; font-style: italic;
-      font-size: 0.9rem; color: var(--text-muted);
-    }
+/* ── SERVICES ── */
+#services{background:var(--off)}
+.sv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
 
-    /* SERVICES */
-    #services { background: var(--off-white); }
-    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-    .service-card { padding: 2rem; }
-    .service-icon {
-      width: 50px; height: 50px; border-radius: 10px;
-      background: var(--green-50); border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 22px; margin-bottom: 1.25rem;
-    }
-    .service-title {
-      font-family: var(--ff-display); font-size: 1.08rem; font-weight: 600;
-      color: var(--text-dark); margin-bottom: 0.6rem;
-    }
-    .service-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; }
-    .service-link { display: inline-block; margin-top: 1rem; font-size: 13px; font-weight: 500; color: var(--green-700); text-decoration: none; }
-    .service-link:hover { color: var(--green-900); }
+/* ── TOOLS ── */
+#tools{background:var(--g850);position:relative;overflow:hidden}
+#tools::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:50px 50px;pointer-events:none}
+#tools .s-title{color:#fff}
+#tools .label{color:var(--g300)}
+#tools .label::before{background:var(--g300)}
+#tools .s-sub{color:rgba(255,255,255,.55)}
+.tools-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:.9rem;margin-top:2.5rem}
 
-    /* TOOLS BAND */
-    #tools { background: var(--green-900); }
-    #tools .section-title { color: var(--white); }
-    #tools .section-label { color: var(--green-400); }
-    #tools .section-sub  { color: rgba(255,255,255,0.6); }
-    .tools-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; margin-top: 2.5rem; }
-    .tool-chip {
-      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 10px; padding: 1.25rem 1rem; text-align: center;
-      transition: background 0.2s, border-color 0.2s;
-    }
-    .tool-chip:hover { background: rgba(151,196,89,0.12); border-color: rgba(151,196,89,0.3); }
-    .tool-chip-icon { font-size: 24px; margin-bottom: 0.5rem; }
-    .tool-chip-name { font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.72); line-height: 1.3; }
+/* ── PROJECTS ── */
+#proj-prev{background:var(--white)}
+.pj-grid-home{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.pj-cta{text-align:center;margin-top:2.5rem}
 
-    /* PROJECTS PREVIEW */
-    #projects-preview { background: var(--white); }
-    .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-    .project-card { border-radius: 12px; overflow: hidden; }
-    .project-img {
-      height: 140px; display: flex; align-items: center;
-      justify-content: center; font-size: 3rem;
-    }
-    .img-sundarban { background: linear-gradient(135deg, #1B4332, #2D6A4F); }
-    .img-haor      { background: linear-gradient(135deg, #184E77, #1E6091); }
-    .img-urban     { background: linear-gradient(135deg, #4a5e2a, #6b8c3a); }
-    .project-body { padding: 1.4rem; background: var(--off-white); }
-    .project-tag {
-      display: inline-block; font-size: 11px; font-weight: 500;
-      letter-spacing: 0.5px; text-transform: uppercase;
-      color: var(--green-700); background: var(--green-50);
-      border: 1px solid var(--green-200); padding: 3px 10px;
-      border-radius: 100px; margin-bottom: 0.6rem;
-    }
-    .project-title {
-      font-family: var(--ff-display); font-size: 1rem; font-weight: 600;
-      color: var(--text-dark); margin-bottom: 0.45rem; line-height: 1.35;
-    }
-    .project-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.65; }
-    .projects-cta { text-align: center; margin-top: 2.5rem; }
+/* ── STATS BAND ── */
+.stats-band{background:linear-gradient(135deg,var(--g800) 0%,var(--g700) 50%,var(--g600) 100%);padding:4.5rem 0;position:relative;overflow:hidden}
+.stats-band::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 30% 50%,rgba(255,255,255,.04) 0%,transparent 50%),radial-gradient(circle at 70% 50%,rgba(90,150,48,.12) 0%,transparent 50%);pointer-events:none}
+.stats-inner{display:grid;grid-template-columns:repeat(4,1fr);position:relative;z-index:1}
+.sb-item{text-align:center;padding:2rem 1.5rem;border-right:1px solid rgba(255,255,255,.08);transition:background .25s}
+.sb-item:hover{background:rgba(255,255,255,.04)}
+.sb-item:last-child{border:none}
+.sb-n{font-family:var(--ff-d);font-size:3rem;font-weight:600;color:var(--g200);line-height:1;display:block;margin-bottom:.4rem}
+.sb-suffix{font-size:2rem}
+.sb-l{font-size:13px;color:rgba(255,255,255,.5);letter-spacing:.3px}
 
-    /* PARTNERS */
-    #partners { background: var(--off-white); text-align: center; }
-    .partners-row { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; margin-top: 2.5rem; }
+/* ── PARTNERS ── */
+#partners{background:var(--off);text-align:center}
+.pills-row{display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center;margin-top:2.5rem}
 
-    /* CTA BAND */
-    .cta-band {
-      background: linear-gradient(135deg, var(--green-800), var(--green-700));
-      padding: 5rem 0; text-align: center; color: white;
-    }
-    .cta-band h2 { font-family: var(--ff-display); font-size: 2.2rem; font-weight: 700; color: white; margin-bottom: 1rem; }
-    .cta-band p  { color: rgba(255,255,255,0.72); font-size: 1.05rem; max-width: 520px; margin: 0 auto 2rem; }
-    .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-
-    /* RESPONSIVE HOME */
-    @media (max-width: 900px) {
-      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .services-grid { grid-template-columns: 1fr 1fr; }
-      .tools-grid { grid-template-columns: repeat(3, 1fr); }
-      .projects-grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 600px) {
-      .services-grid { grid-template-columns: 1fr; }
-      .tools-grid { grid-template-columns: repeat(2, 1fr); }
-      .projects-grid { grid-template-columns: 1fr; }
-      .hero-stats { gap: 2rem; }
-    }
-  </style>
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .hero-stats{grid-template-columns:repeat(2,1fr)}
+  .h-stat{border-right:none;border-bottom:1px solid rgba(255,255,255,.07)}
+  .h-stat:nth-child(3),.h-stat:nth-child(4){border-bottom:none}
+  .ab-grid{grid-template-columns:1fr;gap:2.5rem}
+  .sv-grid{grid-template-columns:1fr 1fr}
+  .tools-grid{grid-template-columns:repeat(3,1fr)}
+  .pj-grid-home{grid-template-columns:1fr 1fr}
+  .stats-inner{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:600px){
+  .sv-grid{grid-template-columns:1fr}
+  .tools-grid{grid-template-columns:repeat(2,1fr)}
+  .pj-grid-home{grid-template-columns:1fr}
+  .hero h1{font-size:2.4rem}
+  .hero-scroll{display:none}
+}
+</style>
 </head>
 <body>
 
+<div id="cur"></div>
+<div id="cur-r"></div>
+
 <!-- NAV -->
 <nav>
-  <div class="nav-inner">
+  <div class="nav-in">
     <a class="nav-brand" href="index.html">
       <div class="nav-logo">
-        <img src="images/logo.png" alt="EIRN Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'nav-logo-text\'>EI</span>'"/>
+        <img src="images/logo.png" alt="EIRN" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=nav-logo-fb>EI</span>'"/>
       </div>
-      <span class="nav-brand-title">Environmental Innovation & Research Network</span>
+      <div class="nav-nm">
+        <span class="nav-nm-m">EIRN</span>
+        <span class="nav-nm-s">Environmental Research Network</span>
+      </div>
     </a>
-    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="nav-tog" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="projects.html">Projects</a></li>
       <li><a href="contact.html">Contact</a></li>
-      <li><a href="contact.html" class="nav-cta">Work With Us</a></li>
+      <li><a href="contact.html" class="ncta">Work With Us</a></li>
     </ul>
   </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="container">
-    <div class="hero-inner">
-      <div class="hero-tag fade-up delay-1">Bangladesh · Environmental Research & Consulting</div>
-      <h1 class="fade-up delay-2">Advancing <em>Environmental Science</em> for a Resilient Bangladesh</h1>
-      <p class="fade-up delay-3">EIRN is a multidisciplinary consultancy integrating GIS, remote sensing, UAV technology, and environmental modeling to address Bangladesh's most pressing ecological and agricultural challenges.</p>
-      <div class="hero-actions fade-up delay-4">
-        <a href="projects.html" class="btn-primary">Explore Our Projects</a>
-        <a href="contact.html" class="btn-outline">Work With Us</a>
-      </div>
-      <div class="hero-stats fade-up delay-5">
-        <div><div class="stat-num">20+</div><div class="stat-label">Research Projects</div></div>
-        <div><div class="stat-num">10+</div><div class="stat-label">Partner Organizations</div></div>
-        <div><div class="stat-num">6</div><div class="stat-label">Core Service Areas</div></div>
-        <div><div class="stat-num">Dhaka</div><div class="stat-label">Headquarters, Bangladesh</div></div>
-      </div>
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-orbs">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+  </div>
+  <div class="container hero-in">
+    <div class="hero-pill">🇧🇩 Bangladesh · Environmental Research &amp; Consulting</div>
+    <h1>Advancing <em>Environmental Science</em><br>for a Resilient Bangladesh</h1>
+    <p class="hero-sub">EIRN is a multidisciplinary consultancy integrating GIS, remote sensing, UAV technology and environmental modeling to address Bangladesh's most pressing ecological and agricultural challenges.</p>
+    <p class="hero-type"><span id="hero-type-el"></span><span class="hero-type-cursor"></span></p>
+    <div class="hero-btns">
+      <a href="projects.html" class="btn btn-p">Explore Our Projects <span class="arr">→</span></a>
+      <a href="contact.html" class="btn btn-gh">Work With Us</a>
+    </div>
+    <div class="hero-stats">
+      <div class="h-stat"><span class="h-stat-n counter" data-target="20" data-suffix="+">20+</span><div class="h-stat-l">Research Projects</div></div>
+      <div class="h-stat"><span class="h-stat-n counter" data-target="10" data-suffix="+">10+</span><div class="h-stat-l">Partner Organizations</div></div>
+      <div class="h-stat"><span class="h-stat-n counter" data-target="6">6</span><div class="h-stat-l">Core Service Areas</div></div>
+      <div class="h-stat"><span class="h-stat-n">Dhaka</span><div class="h-stat-l">Headquarters, BD</div></div>
     </div>
   </div>
+  <div class="hero-scroll">Scroll<div class="hero-scroll-line"></div></div>
 </section>
 
 <!-- ABOUT STRIP -->
 <section id="about">
   <div class="container">
-    <div class="about-grid">
-      <div class="reveal">
-        <div class="section-label">About EIRN</div>
-        <h2 class="section-title">Science-Driven Solutions for Environmental Challenges</h2>
-        <p class="about-desc">The Environmental Innovation and Research Network (EIRN) is a Bangladesh-based consultancy dedicated to solving complex environmental and agricultural problems through rigorous research, advanced geospatial technologies, and collaborative partnerships.</p>
-        <p class="about-desc">We work hand-in-hand with Government ministries, NGOs, and international organizations to deliver evidence-based insights that drive policy and on-the-ground impact.</p>
-        <div class="about-highlights">
-          <div class="about-highlight"><div class="check"></div><span>Government & NGO collaboration on environmental policy</span></div>
-          <div class="about-highlight"><div class="check"></div><span>Cutting-edge GIS and remote sensing analysis</span></div>
-          <div class="about-highlight"><div class="check"></div><span>UAV-based field data collection and mapping</span></div>
-          <div class="about-highlight"><div class="check"></div><span>Agricultural resilience research for rural Bangladesh</span></div>
+    <div class="ab-grid">
+      <div class="ab-text rv-l">
+        <div class="label">About EIRN</div>
+        <h2 class="s-title">Science-Driven Solutions for Environmental Challenges</h2>
+        <p>The Environmental Innovation and Research Network (EIRN) is a Bangladesh-based consultancy dedicated to solving complex environmental and agricultural problems through rigorous research, advanced geospatial technologies, and collaborative partnerships.</p>
+        <p>We work hand-in-hand with Government ministries, NGOs and international organizations to deliver evidence-based insights that drive policy and on-the-ground impact.</p>
+        <div class="ab-checks">
+          <div class="chk"><div class="chk-dot"></div><span>Government &amp; NGO collaboration on environmental policy</span></div>
+          <div class="chk"><div class="chk-dot"></div><span>Cutting-edge GIS and remote sensing analysis</span></div>
+          <div class="chk"><div class="chk-dot"></div><span>UAV-based field data collection and mapping</span></div>
+          <div class="chk"><div class="chk-dot"></div><span>Agricultural resilience research for rural Bangladesh</span></div>
         </div>
-        <div class="about-quote">"Bridging scientific excellence with practical environmental solutions for Bangladesh and beyond."</div>
-        <a href="about.html" class="btn-green-outline" style="margin-top:2rem;">Learn More About Us</a>
+        <div class="ab-quote">"Bridging scientific excellence with practical environmental solutions for Bangladesh and beyond."</div>
+        <a href="about.html" class="btn btn-og" style="margin-top:1.8rem">Learn More About Us <span class="arr">→</span></a>
       </div>
-      <div class="about-badges reveal">
-        <div class="about-badge"><span class="about-badge-icon">🌿</span> Environmental Research & Monitoring</div>
-        <div class="about-badge light"><span class="about-badge-icon">🛰️</span> Geospatial Intelligence & Remote Sensing</div>
-        <div class="about-badge lighter"><span class="about-badge-icon">🌾</span> Agricultural Science & Food Security</div>
-        <div class="about-badge light"><span class="about-badge-icon">🚁</span> UAV Field Surveys & Drone Mapping</div>
-        <div class="about-badge"><span class="about-badge-icon">📊</span> Environmental Modeling & Simulation</div>
-        <div class="about-badge lighter"><span class="about-badge-icon">🤝</span> Government & NGO Advisory</div>
+      <div class="ab-visual rv-r">
+        <div class="ab-badge ab1 tilt"><span class="ab-badge-ico">🌿</span>Environmental Research &amp; Monitoring</div>
+        <div class="ab-badge ab2 tilt"><span class="ab-badge-ico">🛰️</span>Geospatial Intelligence &amp; Remote Sensing</div>
+        <div class="ab-badge ab3 tilt"><span class="ab-badge-ico">🌾</span>Agricultural Science &amp; Food Security</div>
+        <div class="ab-badge ab4 tilt"><span class="ab-badge-ico">🚁</span>UAV Field Surveys &amp; Drone Mapping</div>
+        <div class="ab-badge ab5 tilt"><span class="ab-badge-ico">📊</span>Environmental Modeling &amp; Simulation</div>
+        <div class="ab-badge ab6 tilt"><span class="ab-badge-ico">🤝</span>Government &amp; NGO Advisory Services</div>
       </div>
     </div>
   </div>
@@ -243,179 +191,139 @@
 <!-- SERVICES -->
 <section id="services">
   <div class="container">
-    <div class="section-header reveal">
-      <div class="section-label">Our Services</div>
-      <h2 class="section-title">What We Do</h2>
-      <p class="section-sub">From field surveys to satellite analysis, we offer a full spectrum of environmental consulting and research services.</p>
+    <div class="s-head rv">
+      <div class="label">Our Services</div>
+      <h2 class="s-title">What We Do</h2>
+      <p class="s-sub">A full spectrum of environmental consulting and research services, powered by advanced geospatial technology.</p>
     </div>
-    <div class="services-grid">
-      <div class="card service-card reveal">
-        <div class="service-icon">🗺️</div>
-        <div class="service-title">GIS & Spatial Analysis</div>
-        <p class="service-desc">Advanced geographic information system mapping, spatial data analysis, and cartographic outputs for environmental and land-use planning.</p>
-      </div>
-      <div class="card service-card reveal">
-        <div class="service-icon">🛰️</div>
-        <div class="service-title">Remote Sensing</div>
-        <p class="service-desc">Satellite imagery processing, land cover classification, vegetation monitoring, and multi-temporal change detection across Bangladesh.</p>
-      </div>
-      <div class="card service-card reveal">
-        <div class="service-icon">🚁</div>
-        <div class="service-title">UAV & Drone Surveys</div>
-        <p class="service-desc">High-resolution drone-based aerial surveys for agricultural monitoring, disaster assessment, and coastal zone mapping.</p>
-      </div>
-      <div class="card service-card reveal">
-        <div class="service-icon">🌊</div>
-        <div class="service-title">Environmental Modeling</div>
-        <p class="service-desc">Hydrological, flood risk, climate, and ecosystem modeling to simulate future scenarios and inform resilient decision-making.</p>
-      </div>
-      <div class="card service-card reveal">
-        <div class="service-icon">🌾</div>
-        <div class="service-title">Agricultural Research</div>
-        <p class="service-desc">Crop stress analysis, soil assessment, precision agriculture, and climate-smart farming recommendations for rural communities.</p>
-      </div>
-      <div class="card service-card reveal">
-        <div class="service-icon">📋</div>
-        <div class="service-title">Policy & EIA Consulting</div>
-        <p class="service-desc">Environmental Impact Assessments, policy briefs, and government advisory services aligned with Bangladesh's environmental regulations.</p>
-      </div>
+    <div class="sv-grid stag">
+      <div class="sv-card tilt"><div class="sv-ico">🗺️</div><div class="sv-title">GIS & Spatial Analysis</div><p class="sv-desc">Advanced mapping, spatial data analysis and cartographic outputs for environmental and land-use planning decisions.</p><div class="sv-tags"><span class="sv-tag">ArcGIS</span><span class="sv-tag">QGIS</span><span class="sv-tag">Spatial DB</span></div></div>
+      <div class="sv-card tilt"><div class="sv-ico">🛰️</div><div class="sv-title">Remote Sensing</div><p class="sv-desc">Satellite imagery processing, land cover classification, vegetation monitoring and multi-temporal change detection.</p><div class="sv-tags"><span class="sv-tag">Sentinel</span><span class="sv-tag">Landsat</span><span class="sv-tag">MODIS</span></div></div>
+      <div class="sv-card tilt"><div class="sv-ico">🚁</div><div class="sv-title">UAV & Drone Surveys</div><p class="sv-desc">High-resolution drone-based aerial surveys for agricultural monitoring, disaster assessment and coastal mapping.</p><div class="sv-tags"><span class="sv-tag">DJI Drones</span><span class="sv-tag">Photogrammetry</span><span class="sv-tag">LiDAR</span></div></div>
+      <div class="sv-card tilt"><div class="sv-ico">🌊</div><div class="sv-title">Environmental Modeling</div><p class="sv-desc">Hydrological, flood risk, climate and ecosystem modeling to simulate scenarios and support evidence-based decisions.</p><div class="sv-tags"><span class="sv-tag">HEC-HMS</span><span class="sv-tag">SWAT</span><span class="sv-tag">MIKE FLOOD</span></div></div>
+      <div class="sv-card tilt"><div class="sv-ico">🌾</div><div class="sv-title">Agricultural Research</div><p class="sv-desc">Crop stress analysis, soil assessment, precision agriculture and climate-smart farming for rural communities.</p><div class="sv-tags"><span class="sv-tag">Crop Monitoring</span><span class="sv-tag">Soil Mapping</span><span class="sv-tag">NDVI</span></div></div>
+      <div class="sv-card tilt"><div class="sv-ico">📋</div><div class="sv-title">Policy & EIA Consulting</div><p class="sv-desc">Environmental Impact Assessments, policy briefs and advisory services aligned with Bangladesh DoE regulations.</p><div class="sv-tags"><span class="sv-tag">EIA</span><span class="sv-tag">Policy Briefs</span><span class="sv-tag">DoE</span></div></div>
     </div>
   </div>
 </section>
 
-<!-- TOOLS BAND -->
+<!-- TOOLS -->
 <section id="tools">
   <div class="container">
-    <div class="reveal">
-      <div class="section-label">Technologies & Tools</div>
-      <h2 class="section-title">Our Technical Toolkit</h2>
-      <p class="section-sub">We leverage state-of-the-art platforms to deliver precision environmental intelligence.</p>
+    <div class="rv">
+      <div class="label">Technologies & Tools</div>
+      <h2 class="s-title">Our Technical Toolkit</h2>
+      <p class="s-sub">State-of-the-art platforms and software for precision environmental intelligence.</p>
     </div>
-    <div class="tools-grid reveal">
-      <div class="tool-chip"><div class="tool-chip-icon">🗺️</div><div class="tool-chip-name">ArcGIS / QGIS</div></div>
-      <div class="tool-chip"><div class="tool-chip-icon">🛰️</div><div class="tool-chip-name">Google Earth Engine</div></div>
-      <div class="tool-chip"><div class="tool-chip-icon">🚁</div><div class="tool-chip-name">UAV / DJI Drones</div></div>
-      <div class="tool-chip"><div class="tool-chip-icon">🌊</div><div class="tool-chip-name">HEC-HMS / RAS</div></div>
-      <div class="tool-chip"><div class="tool-chip-icon">🌿</div><div class="tool-chip-name">ENVI / ERDAS</div></div>
-      <div class="tool-chip"><div class="tool-chip-icon">🤖</div><div class="tool-chip-name">Machine Learning (GeoAI)</div></div>
-      <div class="tool-chip"><div class="tool-chip-icon">📡</div><div class="tool-chip-name">Sentinel / Landsat</div></div>
-      <div class="tool-chip"><div class="tool-chip-icon">🌍</div><div class="tool-chip-name">SNAP / SARscape</div></div>
-      <div class="tool-chip"><div class="tool-chip-icon">🐍</div><div class="tool-chip-name">Python / R</div></div>
-      <div class="tool-chip"><div class="tool-chip-icon">☁️</div><div class="tool-chip-name">Cloud GIS Platforms</div></div>
+    <div class="tools-grid stag">
+      <div class="tc"><div class="tc-ico">🗺️</div><div class="tc-n">ArcGIS / QGIS</div></div>
+      <div class="tc"><div class="tc-ico">🛰️</div><div class="tc-n">Google Earth Engine</div></div>
+      <div class="tc"><div class="tc-ico">🚁</div><div class="tc-n">UAV / DJI Drones</div></div>
+      <div class="tc"><div class="tc-ico">🌊</div><div class="tc-n">HEC-HMS / RAS</div></div>
+      <div class="tc"><div class="tc-ico">🌿</div><div class="tc-n">ENVI / ERDAS</div></div>
+      <div class="tc"><div class="tc-ico">🤖</div><div class="tc-n">GeoAI / ML</div></div>
+      <div class="tc"><div class="tc-ico">📡</div><div class="tc-n">Sentinel / Landsat</div></div>
+      <div class="tc"><div class="tc-ico">🌍</div><div class="tc-n">SNAP / SARscape</div></div>
+      <div class="tc"><div class="tc-ico">🐍</div><div class="tc-n">Python / R</div></div>
+      <div class="tc"><div class="tc-ico">☁️</div><div class="tc-n">Cloud GIS</div></div>
     </div>
   </div>
 </section>
 
+<!-- STATS BAND -->
+<div class="stats-band">
+  <div class="container stats-inner stag">
+    <div class="sb-item"><span class="sb-n"><span class="counter" data-target="20" data-suffix="+">20</span></span><div class="sb-l">Research Projects</div></div>
+    <div class="sb-item"><span class="sb-n"><span class="counter" data-target="10" data-suffix="+">10</span></span><div class="sb-l">Partner Organizations</div></div>
+    <div class="sb-item"><span class="sb-n"><span class="counter" data-target="5">5</span><span class="sb-suffix">+</span></span><div class="sb-l">Years of Excellence</div></div>
+    <div class="sb-item"><span class="sb-n"><span class="counter" data-target="6">6</span></span><div class="sb-l">Core Service Areas</div></div>
+  </div>
+</div>
+
 <!-- PROJECTS PREVIEW -->
-<section id="projects-preview">
+<section id="proj-prev">
   <div class="container">
-    <div class="section-header reveal">
-      <div class="section-label">Research & Projects</div>
-      <h2 class="section-title">Featured Work</h2>
-      <p class="section-sub">Explore some of our impactful research and consulting projects across Bangladesh and the region.</p>
+    <div class="s-head rv">
+      <div class="label">Research & Projects</div>
+      <h2 class="s-title">Featured Work</h2>
+      <p class="s-sub">Impactful research and consulting across Bangladesh — from the Sundarbans to urban Dhaka.</p>
     </div>
-    <div class="projects-grid">
-      <div class="card project-card reveal">
-        <div class="project-img img-sundarban">🌿</div>
-        <div class="project-body">
-          <div class="project-tag">Coastal Ecology</div>
-          <div class="project-title">Sundarbans Climate Resilience Assessment</div>
-          <p class="project-desc">Analyzing climate-induced changes on the world's largest mangrove ecosystem using multi-source remote sensing.</p>
-        </div>
-      </div>
-      <div class="card project-card reveal">
-        <div class="project-img img-haor">💧</div>
-        <div class="project-body">
-          <div class="project-tag">Hydrological Modeling</div>
-          <div class="project-title">Haor Wetland Flood Dynamics</div>
-          <p class="project-desc">Modeling seasonal flood extents in northeastern Bangladesh's haor basins using SAR satellite data and hydrological models.</p>
-        </div>
-      </div>
-      <div class="card project-card reveal">
-        <div class="project-img img-urban">🏙️</div>
-        <div class="project-body">
-          <div class="project-tag">Urban Environment</div>
-          <div class="project-title">Dhaka Urban Heat Island Mapping</div>
-          <p class="project-desc">Spatiotemporal analysis of urban heat islands across Dhaka using Landsat thermal data and machine learning classification.</p>
-        </div>
-      </div>
+    <div class="pj-grid-home stag">
+      <div class="pj-card"><div class="pj-img" style="background:linear-gradient(135deg,#1B4332,#2D6A4F)">🌿</div><div class="pj-body"><div class="pj-tag">Coastal Ecology</div><div class="pj-title">Sundarbans Climate Resilience Assessment</div><p class="pj-desc">Analyzing climate-induced changes on the world's largest mangrove ecosystem using multi-source satellite data.</p><div class="pj-meta"><span>🛰️ Remote Sensing</span><span>📅 2023–24</span></div></div></div>
+      <div class="pj-card"><div class="pj-img" style="background:linear-gradient(135deg,#184E77,#1E6091)">💧</div><div class="pj-body"><div class="pj-tag">Hydrological Modeling</div><div class="pj-title">Haor Wetland Flood Dynamics</div><p class="pj-desc">Modeling seasonal flood extents in northeastern Bangladesh's haor basins using SAR satellite data and hydrological models.</p><div class="pj-meta"><span>🌊 Flood Model</span><span>📅 2023</span></div></div></div>
+      <div class="pj-card"><div class="pj-img" style="background:linear-gradient(135deg,#3a5220,#5a7a30)">🏙️</div><div class="pj-body"><div class="pj-tag">Urban Environment</div><div class="pj-title">Dhaka Urban Heat Island Mapping</div><p class="pj-desc">Spatiotemporal heat island analysis using Landsat thermal data and machine learning classification algorithms.</p><div class="pj-meta"><span>🌡️ Thermal Analysis</span><span>📅 2022–23</span></div></div></div>
     </div>
-    <div class="projects-cta reveal">
-      <a href="projects.html" class="btn-green-outline">View All Projects →</a>
-    </div>
+    <div class="pj-cta rv"><a href="projects.html" class="btn btn-og">View All Projects <span class="arr">→</span></a></div>
   </div>
 </section>
 
 <!-- PARTNERS -->
 <section id="partners">
   <div class="container">
-    <div class="section-label reveal">Partners & Collaborators</div>
-    <h2 class="section-title reveal">We Work With</h2>
-    <div class="partners-row reveal">
-      <div class="partner-pill">Government of Bangladesh</div>
-      <div class="partner-pill">Department of Environment (DoE)</div>
-      <div class="partner-pill">BRAC</div>
-      <div class="partner-pill">UNDP Bangladesh</div>
-      <div class="partner-pill">Bangladesh Meteorological Department</div>
-      <div class="partner-pill">World Bank</div>
-      <div class="partner-pill">FAO Bangladesh</div>
-      <div class="partner-pill">Local NGOs & Research Institutes</div>
+    <div class="rv" style="text-align:center">
+      <div class="label" style="justify-content:center"><span></span>Partners &amp; Collaborators</div>
+      <h2 class="s-title" style="text-align:center">We Work With</h2>
+    </div>
+    <div class="pills-row rv">
+      <div class="pill">🏛️ Government of Bangladesh</div>
+      <div class="pill">🌿 Department of Environment (DoE)</div>
+      <div class="pill">🤝 BRAC</div>
+      <div class="pill">🌐 UNDP Bangladesh</div>
+      <div class="pill">🌤️ Bangladesh Meteorological Dept.</div>
+      <div class="pill">🏦 World Bank</div>
+      <div class="pill">🌾 FAO Bangladesh</div>
+      <div class="pill">🔬 Local Research Institutes</div>
     </div>
   </div>
 </section>
 
-<!-- CTA BAND -->
+<!-- CTA -->
 <div class="cta-band">
-  <div class="container reveal">
+  <div class="container rv">
     <h2>Ready to Work Together?</h2>
-    <p>Whether you're a government body, NGO, or private organization, we'd love to support your environmental goals.</p>
-    <div class="cta-actions">
-      <a href="contact.html" class="btn-primary">Get In Touch</a>
-      <a href="about.html" class="btn-outline">Learn About EIRN</a>
+    <p>Whether you're a government body, NGO or private organization — we'd love to support your environmental goals.</p>
+    <div class="cta-acts">
+      <a href="contact.html" class="btn btn-p">Get In Touch <span class="arr">→</span></a>
+      <a href="about.html" class="btn btn-gh">Learn About EIRN</a>
     </div>
   </div>
 </div>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-inner">
+  <div class="ft-grid">
     <div>
-      <div class="footer-brand-title">EIRN</div>
-      <p class="footer-brand-desc">Environmental Innovation & Research Network — advancing ecological science for a resilient Bangladesh through geospatial technology and evidence-based research.</p>
+      <div class="ft-nm">EIRN</div>
+      <p class="ft-desc">Environmental Innovation &amp; Research Network — advancing ecological science for a resilient Bangladesh through geospatial technology and evidence-based research.</p>
+      <div class="ft-soc">
+        <a href="#" title="LinkedIn">🔗</a>
+        <a href="#" title="Twitter">🐦</a>
+        <a href="#" title="Facebook">📘</a>
+        <a href="#" title="ResearchGate">🔬</a>
+      </div>
     </div>
-    <div class="footer-col">
-      <h4>Pages</h4>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Services</h4>
-      <ul>
-        <li><a href="about.html#services">GIS & Spatial Analysis</a></li>
-        <li><a href="about.html#services">Remote Sensing</a></li>
-        <li><a href="about.html#services">UAV Surveys</a></li>
-        <li><a href="about.html#services">Environmental Modeling</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <ul>
-        <li><a href="mailto:contact@eirn.org">contact@eirn.org</a></li>
-        <li><a href="#">eirn.com.bd (coming soon)</a></li>
-        <li><a href="#">Dhaka, Bangladesh</a></li>
-      </ul>
-    </div>
+    <div class="ft-col"><h4>Pages</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="projects.html">Projects</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="ft-col"><h4>Services</h4><ul><li><a href="about.html#services">GIS & Spatial Analysis</a></li><li><a href="about.html#services">Remote Sensing</a></li><li><a href="about.html#services">UAV Surveys</a></li><li><a href="about.html#services">Environmental Modeling</a></li></ul></div>
+    <div class="ft-col"><h4>Contact</h4><ul><li><a href="mailto:contact@eirn.org">contact@eirn.org</a></li><li><a href="#">eirn.com.bd (coming soon)</a></li><li><a href="#">Dhaka, Bangladesh</a></li></ul></div>
   </div>
-  <div class="footer-bottom">
-    <span>© 2025 <span>EIRN</span>. All rights reserved.</span>
-    <span>Environmental Innovation & Research Network · Dhaka, Bangladesh</span>
+  <div class="ft-bot">
+    <span>© 2025 <em>EIRN</em>. All rights reserved.</span>
+    <span>Environmental Innovation &amp; Research Network · Dhaka, Bangladesh</span>
   </div>
 </footer>
 
 <script src="script.js"></script>
+<script>
+// Hero particle canvas
+initParticles(document.getElementById('hero-canvas'),{count:65,speed:.35,color:'rgba(120,185,70,.55)',lineColor:'rgba(90,150,48,.18)',maxDist:140});
+
+// Typing animation
+typeText(document.getElementById('hero-type-el'),[
+  'Solving environmental challenges with data.',
+  'GIS · Remote Sensing · UAV · Modeling.',
+  'Working with Government & NGOs in Bangladesh.',
+  'From the Sundarbans to the Himalayas.',
+]);
+</script>
 </body>
 </html>
