@@ -4,111 +4,37 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>EIRN | Environmental Innovation & Research Network</title>
-<meta name="description" content="Bangladesh-based environmental consultancy using GIS, remote sensing, UAV technology and environmental modeling to solve ecological and agricultural challenges."/>
+<meta name="description" content="Bangladesh-based environmental consultancy using GIS, remote sensing, UAV technology and environmental modeling."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link rel="stylesheet" href="style.css"/>
 <style>
-/* ── HERO ── */
-.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;background:linear-gradient(160deg,var(--g900) 0%,var(--g850) 40%,var(--g800) 75%,var(--g700) 100%)}
-#hero-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
-.hero-orbs{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.orb{position:absolute;border-radius:50%;filter:blur(80px);animation:orbFloat 12s ease-in-out infinite alternate}
-.orb1{width:420px;height:420px;background:radial-gradient(circle,rgba(90,150,48,.18) 0%,transparent 70%);top:-100px;right:-80px;animation-duration:14s}
-.orb2{width:300px;height:300px;background:radial-gradient(circle,rgba(50,110,20,.14) 0%,transparent 70%);bottom:-80px;left:15%;animation-duration:18s;animation-delay:-5s}
-.orb3{width:220px;height:220px;background:radial-gradient(circle,rgba(196,160,53,.08) 0%,transparent 70%);top:40%;left:60%;animation-duration:22s;animation-delay:-9s}
-@keyframes orbFloat{from{transform:translate(0,0) scale(1)}to{transform:translate(30px,20px) scale(1.06)}}
-.hero-in{position:relative;z-index:2;padding-top:var(--nav-h)}
-.hero-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(90,150,48,.14);border:1px solid rgba(90,150,48,.28);color:var(--g100);font-size:12px;font-weight:500;padding:6px 16px;border-radius:100px;margin-bottom:2rem;letter-spacing:.5px;animation:fadeHero .7s ease both .2s;opacity:0}
-.hero-pill::before{content:'';width:7px;height:7px;background:var(--g300);border-radius:50%;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.85)}}
-@keyframes fadeHero{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-.hero h1{font-family:var(--ff-d);font-size:clamp(2.6rem,5.5vw,4.2rem);font-weight:600;color:#fff;line-height:1.15;letter-spacing:-.5px;margin-bottom:1.4rem;animation:fadeHero .7s ease both .38s;opacity:0}
-.hero h1 em{color:var(--g300);font-style:normal;position:relative}
-.hero h1 em::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--g400),var(--g200));border-radius:2px}
-.hero-sub{font-size:1.12rem;color:rgba(255,255,255,.7);max-width:580px;line-height:1.8;margin-bottom:.75rem;animation:fadeHero .7s ease both .52s;opacity:0}
-.hero-type{font-size:1.05rem;color:var(--g200);font-weight:500;margin-bottom:2.2rem;min-height:1.6em;animation:fadeHero .7s ease both .64s;opacity:0}
-.hero-type-cursor{display:inline-block;width:2px;height:1.1em;background:var(--g300);margin-left:2px;vertical-align:middle;animation:blink .8s step-end infinite}
+/* Hero specific */
+.hero-type-cursor{display:inline-block;width:2px;height:1em;background:var(--g200);margin-left:2px;vertical-align:middle;animation:blink .8s step-end infinite}
 @keyframes blink{50%{opacity:0}}
-.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeHero .7s ease both .76s;opacity:0}
-.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:4.5rem;padding-top:3.5rem;border-top:1px solid rgba(255,255,255,.08);animation:fadeHero .7s ease both .88s;opacity:0}
-.h-stat{text-align:center;padding:1rem .5rem;border-right:1px solid rgba(255,255,255,.07)}
-.h-stat:last-child{border-right:none}
-.h-stat-n{font-family:var(--ff-d);font-size:2.4rem;font-weight:600;color:var(--g300);line-height:1;display:block}
-.h-stat-l{font-size:12px;color:rgba(255,255,255,.45);margin-top:5px;letter-spacing:.3px}
-.hero-scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:6px;color:rgba(255,255,255,.35);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;animation:fadeHero .7s ease both 1s;opacity:0}
-.hero-scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,rgba(255,255,255,.35),transparent);animation:scrollPulse 2s ease-in-out infinite}
-@keyframes scrollPulse{0%,100%{transform:scaleY(1);opacity:.4}50%{transform:scaleY(1.2);opacity:.8}}
-
-/* ── ABOUT ── */
-#about{background:var(--white)}
-.ab-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
-.ab-text p{color:var(--mid);font-size:.98rem;line-height:1.85;margin-bottom:1.1rem}
-.ab-checks{display:flex;flex-direction:column;gap:.85rem;margin:1.6rem 0}
-.ab-quote{margin-top:1.75rem;padding:1.1rem 1.4rem;background:var(--g20);border-left:3px solid var(--g400);border-radius:0 var(--rs) var(--rs) 0;font-style:italic;font-size:.9rem;color:var(--muted);font-family:var(--ff-d)}
-.ab-visual{display:flex;flex-direction:column;gap:.9rem}
-.ab-badge{display:flex;align-items:center;gap:13px;padding:13px 18px;border-radius:12px;font-size:14px;font-weight:500;color:var(--g50);transition:transform .25s,box-shadow .25s}
-.ab-badge:hover{transform:translateX(6px);box-shadow:var(--sh-md)}
-.ab-badge-ico{font-size:21px}
-.ab1{background:var(--g700)}.ab2{background:var(--g600)}.ab3{background:var(--g500)}.ab4{background:var(--g600)}.ab5{background:var(--g700)}.ab6{background:var(--g800)}
-
-/* ── SERVICES ── */
-#services{background:var(--off)}
-.sv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
-
-/* ── TOOLS ── */
-#tools{background:var(--g850);position:relative;overflow:hidden}
-#tools::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:50px 50px;pointer-events:none}
-#tools .s-title{color:#fff}
-#tools .label{color:var(--g300)}
-#tools .label::before{background:var(--g300)}
-#tools .s-sub{color:rgba(255,255,255,.55)}
-.tools-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:.9rem;margin-top:2.5rem}
-
-/* ── PROJECTS ── */
-#proj-prev{background:var(--white)}
-.pj-grid-home{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
-.pj-cta{text-align:center;margin-top:2.5rem}
-
-/* ── STATS BAND ── */
-.stats-band{background:linear-gradient(135deg,var(--g800) 0%,var(--g700) 50%,var(--g600) 100%);padding:4.5rem 0;position:relative;overflow:hidden}
-.stats-band::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 30% 50%,rgba(255,255,255,.04) 0%,transparent 50%),radial-gradient(circle at 70% 50%,rgba(90,150,48,.12) 0%,transparent 50%);pointer-events:none}
-.stats-inner{display:grid;grid-template-columns:repeat(4,1fr);position:relative;z-index:1}
-.sb-item{text-align:center;padding:2rem 1.5rem;border-right:1px solid rgba(255,255,255,.08);transition:background .25s}
-.sb-item:hover{background:rgba(255,255,255,.04)}
-.sb-item:last-child{border:none}
-.sb-n{font-family:var(--ff-d);font-size:3rem;font-weight:600;color:var(--g200);line-height:1;display:block;margin-bottom:.4rem}
-.sb-suffix{font-size:2rem}
-.sb-l{font-size:13px;color:rgba(255,255,255,.5);letter-spacing:.3px}
-
-/* ── PARTNERS ── */
-#partners{background:var(--off);text-align:center}
-.pills-row{display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center;margin-top:2.5rem}
-
-/* ── RESPONSIVE ── */
-@media(max-width:900px){
-  .hero-stats{grid-template-columns:repeat(2,1fr)}
-  .h-stat{border-right:none;border-bottom:1px solid rgba(255,255,255,.07)}
-  .h-stat:nth-child(3),.h-stat:nth-child(4){border-bottom:none}
-  .ab-grid{grid-template-columns:1fr;gap:2.5rem}
-  .sv-grid{grid-template-columns:1fr 1fr}
-  .tools-grid{grid-template-columns:repeat(3,1fr)}
-  .pj-grid-home{grid-template-columns:1fr 1fr}
-  .stats-inner{grid-template-columns:repeat(2,1fr)}
-}
-@media(max-width:600px){
-  .sv-grid{grid-template-columns:1fr}
-  .tools-grid{grid-template-columns:repeat(2,1fr)}
-  .pj-grid-home{grid-template-columns:1fr}
-  .hero h1{font-size:2.4rem}
-  .hero-scroll{display:none}
-}
+.hero-scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:5px;color:rgba(255,255,255,.3);font-size:10px;letter-spacing:2px;text-transform:uppercase;z-index:2}
+.hero-scroll-line{width:1px;height:36px;background:linear-gradient(to bottom,rgba(255,255,255,.3),transparent);animation:scrollPulse 2s ease-in-out infinite}
+@keyframes scrollPulse{0%,100%{opacity:.4;transform:scaleY(1)}50%{opacity:.8;transform:scaleY(1.15)}}
+@media(max-width:600px){.hero-scroll{display:none}}
 </style>
 </head>
 <body>
 
-<div id="cur"></div>
-<div id="cur-r"></div>
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-in">
+    <div class="topbar-contact">
+      <a href="mailto:contact@eirn.org"><span class="tbi">✉</span> contact@eirn.org</a>
+      <a href="tel:+880000000000"><span class="tbi">📞</span> +880 0000-000000</a>
+      <a href="index.html"><span class="tbi">📍</span> Dhaka, Bangladesh</a>
+    </div>
+    <div class="topbar-social">
+      <a href="#" title="LinkedIn">🔗</a>
+      <a href="#" title="Facebook">📘</a>
+      <a href="#" title="ResearchGate">🔬</a>
+    </div>
+  </div>
+</div>
 
 <!-- NAV -->
 <nav>
@@ -117,17 +43,41 @@
       <div class="nav-logo">
         <img src="images/logo.png" alt="EIRN" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=nav-logo-fb>EI</span>'"/>
       </div>
-      <div class="nav-nm">
+      <div>
         <span class="nav-nm-m">EIRN</span>
-        <span class="nav-nm-s">Environmental Innovation and Research Network</span>
+        <span class="nav-nm-s">Environmental Innovation & Research Network</span>
       </div>
     </a>
     <button class="nav-tog" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="contact.html">Contact</a></li>
+    <ul class="nav-menu">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li>
+        <a href="about.html">About Us <span class="chev">▾</span></a>
+        <div class="dropdown">
+          <a href="about.html">The Organization</a>
+          <a href="about.html#mission">Mission & Vision</a>
+          <a href="about.html#team">Meet the Team</a>
+          <a href="about.html#partners">Our Partners</a>
+          <a href="contact.html">Contact Us</a>
+        </div>
+      </li>
+      <li>
+        <a href="projects.html">Divisions <span class="chev">▾</span></a>
+        <div class="dropdown">
+          <a href="projects.html?cat=coastal">Environment</a>
+          <a href="projects.html?cat=hydro">Hydrology</a>
+          <a href="projects.html?cat=urban">Urban Environment</a>
+          <a href="projects.html?cat=agri">Agriculture</a>
+          <a href="projects.html">GIS & Remote Sensing</a>
+        </div>
+      </li>
+      <li><a href="projects.html">Projects <span class="chev">▾</span></a>
+        <div class="dropdown">
+          <a href="projects.html">Ongoing Projects</a>
+          <a href="projects.html">Completed Projects</a>
+        </div>
+      </li>
+      <li><a href="about.html#services">Our Services</a></li>
       <li><a href="contact.html" class="ncta">Work With Us</a></li>
     </ul>
   </div>
@@ -136,86 +86,180 @@
 <!-- HERO -->
 <section class="hero">
   <canvas id="hero-canvas"></canvas>
-  <div class="hero-orbs">
-    <div class="orb orb1"></div>
-    <div class="orb orb2"></div>
-    <div class="orb orb3"></div>
-  </div>
+  <div class="hero-pattern"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
   <div class="container hero-in">
-    <div class="hero-pill">🇧🇩 Environmental Research &amp; Consulting</div>
-    <h1>Advancing <em>Environmental Science</em><br>for a Resilient Bangladesh</h1>
-    <p class="hero-sub">EIRN is a multidisciplinary consultancy integrating GIS, remote sensing, UAV technology and environmental modeling to address Bangladesh's most pressing ecological and agricultural challenges.</p>
-    <p class="hero-type"><span id="hero-type-el"></span><span class="hero-type-cursor"></span></p>
-    <div class="hero-btns">
-      <a href="projects.html" class="btn btn-p">Explore Our Projects <span class="arr">→</span></a>
-      <a href="contact.html" class="btn btn-gh">Work With Us</a>
+    <!-- Left: text -->
+    <div>
+      <div class="hero-badge" style="animation:fadeHero .6s ease both .1s;opacity:0">🇧🇩 Environmental Research & Consulting</div>
+      <h1 style="animation:fadeHero .7s ease both .25s;opacity:0">Advancing <em>Environmental Science</em> for a Resilient Bangladesh</h1>
+      <p class="hero-sub" style="animation:fadeHero .7s ease both .4s;opacity:0">EIRN is a multidisciplinary consultancy integrating GIS, remote sensing, UAV technology and environmental modeling to address Bangladesh's most pressing ecological and agricultural challenges.</p>
+      <p style="font-size:.98rem;color:var(--g200);font-weight:500;margin-bottom:2rem;min-height:1.5em;animation:fadeHero .7s ease both .52s;opacity:0"><span id="hero-type-el"></span><span class="hero-type-cursor"></span></p>
+      <div class="hero-btns" style="animation:fadeHero .7s ease both .64s;opacity:0">
+        <a href="projects.html" class="btn btn-p">Explore Our Projects <span class="arr">→</span></a>
+        <a href="contact.html" class="btn btn-w">Work With Us</a>
+      </div>
+      <div class="hero-divider" style="animation:fadeHero .7s ease both .76s;opacity:0"></div>
+      <div class="hero-stats" style="animation:fadeHero .7s ease both .88s;opacity:0">
+        <div><span class="h-stat-n counter" data-target="20" data-suffix="+">20+</span><div class="h-stat-l">Research Projects</div></div>
+        <div><span class="h-stat-n counter" data-target="10" data-suffix="+">10+</span><div class="h-stat-l">Partner Organizations</div></div>
+        <div><span class="h-stat-n counter" data-target="6">6</span><div class="h-stat-l">Core Service Areas</div></div>
+        <div><span class="h-stat-n">5+</span><div class="h-stat-l">Years of Excellence</div></div>
+      </div>
     </div>
-    <div class="hero-stats">
-      <div class="h-stat"><span class="h-stat-n counter" data-target="20" data-suffix="+">20+</span><div class="h-stat-l">Research Projects</div></div>
-      <div class="h-stat"><span class="h-stat-n counter" data-target="10" data-suffix="+">10+</span><div class="h-stat-l">Partner Organizations</div></div>
-      <div class="h-stat"><span class="h-stat-n counter" data-target="6">6</span><div class="h-stat-l">Core Service Areas</div></div>
-      <div class="h-stat"><span class="h-stat-n">Dhaka</span><div class="h-stat-l">Headquarters, BD</div></div>
+    <!-- Right: contact card -->
+    <div class="hero-card" style="animation:fadeHero .8s ease both .4s;opacity:0">
+      <div class="hero-card-title">Quick Contact</div>
+      <div class="hc-item">
+        <div class="hc-ico">📞</div>
+        <div>
+          <div class="hc-label">Phone</div>
+          <div class="hc-val"><a href="tel:+880000000000">+880 0000-000000</a></div>
+        </div>
+      </div>
+      <div class="hc-item">
+        <div class="hc-ico">✉️</div>
+        <div>
+          <div class="hc-label">Email</div>
+          <div class="hc-val">
+            <a href="mailto:contact@eirn.org">contact@eirn.org</a><br>
+            <a href="mailto:ceo@eirn.org">ceo@eirn.org</a>
+          </div>
+        </div>
+      </div>
+      <div class="hc-item">
+        <div class="hc-ico">📍</div>
+        <div>
+          <div class="hc-label">Address</div>
+          <div class="hc-val">House B/XX, Road 12,<br>Dhaka–1206, Bangladesh</div>
+        </div>
+      </div>
+      <div class="hc-item">
+        <div class="hc-ico">⏰</div>
+        <div>
+          <div class="hc-label">Office Hours</div>
+          <div class="hc-val">Sun–Thu: 9:00 AM – 6:00 PM</div>
+        </div>
+      </div>
+      <div class="hero-card-cta">
+        <a href="contact.html" class="btn btn-p" style="width:100%;justify-content:center">Send a Message →</a>
+      </div>
     </div>
   </div>
   <div class="hero-scroll">Scroll<div class="hero-scroll-line"></div></div>
 </section>
 
-<!-- ABOUT STRIP -->
-<section id="about">
+<!-- WHO WE ARE / CEO MESSAGE -->
+<section class="about-strip">
   <div class="container">
-    <div class="ab-grid">
-      <div class="ab-text rv-l">
-        <div class="label">About EIRN</div>
-        <h2 class="s-title">Science-Driven Solutions for Environmental Challenges</h2>
-        <p>The Environmental Innovation and Research Network (EIRN) is a Bangladesh-based consultancy dedicated to solving complex environmental and agricultural problems through rigorous research, advanced geospatial technologies, and collaborative partnerships.</p>
-        <p>We work hand-in-hand with Government ministries, NGOs and international organizations to deliver evidence-based insights that drive policy and on-the-ground impact.</p>
-        <div class="ab-checks">
-          <div class="chk"><div class="chk-dot"></div><span>Government &amp; NGO collaboration on environmental policy</span></div>
-          <div class="chk"><div class="chk-dot"></div><span>Cutting-edge GIS and remote sensing analysis</span></div>
-          <div class="chk"><div class="chk-dot"></div><span>UAV-based field data collection and mapping</span></div>
-          <div class="chk"><div class="chk-dot"></div><span>Agricultural resilience research for rural Bangladesh</span></div>
+    <div class="about-grid">
+      <!-- Left: text -->
+      <div class="rv-l">
+        <div class="sec-label">Who We Are</div>
+        <h2 class="sec-title">Message From Our Founder</h2>
+        <div class="about-text">
+          <p>EIRN stands out as a hub for rigorous environmental science and geospatial innovation in Bangladesh, offering cutting-edge solutions that integrate GIS, remote sensing, UAV technology, and open-source modeling platforms. These tools are pivotal in creating sustainable research designs and addressing complex ecological challenges across Bangladesh's diverse landscapes.</p>
+          <p>By applying systematic and science-driven thinking, EIRN transforms traditional environmental problems into opportunities for evidence-based policy and community resilience — particularly in large-scale hydrological modeling, coastal ecology research, and climate adaptation planning. Our commitment to sustainability and forward-thinking approaches ensures that every project is not only technically rigorous but also aligned with the principles of environmental stewardship and long-term viability.</p>
+          <p>At the heart of EIRN lies a dynamic team of young, motivated professionals who embody the spirit of innovation and determination. Their energy and passion drive the organization's research-based approach to problem-solving, offering practical and implementable solutions to Bangladesh's most pressing ecological and agricultural challenges.</p>
         </div>
-        <div class="ab-quote">"Bridging scientific excellence with practical environmental solutions for Bangladesh and beyond."</div>
-        <a href="about.html" class="btn btn-og" style="margin-top:1.8rem">Learn More About Us <span class="arr">→</span></a>
+        <div class="val-grid" style="margin-top:1.8rem">
+          <div class="val-item"><div class="val-ico">🔬</div><div><div class="val-t">Scientific Rigor</div><div class="val-d">Peer-reviewed methodology underpins every project.</div></div></div>
+          <div class="val-item"><div class="val-ico">🌱</div><div><div class="val-t">Sustainability First</div><div class="val-d">Long-term ecological resilience guides all recommendations.</div></div></div>
+          <div class="val-item"><div class="val-ico">🤝</div><div><div class="val-t">Collaborative Impact</div><div class="val-d">Real change through partnerships with institutions.</div></div></div>
+          <div class="val-item"><div class="val-ico">🇧🇩</div><div><div class="val-t">Local Expertise</div><div class="val-d">Deep knowledge of Bangladesh's ecological context.</div></div></div>
+        </div>
+        <a href="about.html" class="btn btn-o" style="margin-top:2rem">Learn More About Us <span class="arr">→</span></a>
       </div>
-      <div class="ab-visual rv-r">
-        <div class="ab-badge ab1 tilt"><span class="ab-badge-ico">🌿</span>Environmental Research &amp; Monitoring</div>
-        <div class="ab-badge ab2 tilt"><span class="ab-badge-ico">🛰️</span>Geospatial Intelligence &amp; Remote Sensing</div>
-        <div class="ab-badge ab3 tilt"><span class="ab-badge-ico">🌾</span>Agricultural Science &amp; Food Security</div>
-        <div class="ab-badge ab4 tilt"><span class="ab-badge-ico">🚁</span>UAV Field Surveys &amp; Drone Mapping</div>
-        <div class="ab-badge ab5 tilt"><span class="ab-badge-ico">📊</span>Environmental Modeling &amp; Simulation</div>
-        <div class="ab-badge ab6 tilt"><span class="ab-badge-ico">🤝</span>Government &amp; NGO Advisory Services</div>
+      <!-- Right: CEO card -->
+      <div class="rv-r">
+        <div class="ceo-card">
+          <div class="ceo-img">
+            <img src="images/founder.jpg" alt="Founder EIRN" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<div class=ceo-img-fallback>👩‍🔬</div>'"/>
+          </div>
+          <div class="ceo-body">
+            <div class="ceo-name">Shah Israt Azmery</div>
+            <div class="ceo-role">Founder & Lead Researcher</div>
+            <div class="ceo-quote">"Bridging scientific excellence with practical environmental solutions for Bangladesh and beyond — because the planet cannot wait."</div>
+            <div style="display:flex;gap:.5rem;margin-top:1.2rem;flex-wrap:wrap">
+              <span style="font-size:10.5px;background:var(--g50);color:var(--g600);padding:3px 10px;border-radius:100px;border:1px solid rgba(41,138,61,.2);font-weight:500">Environmental Science</span>
+              <span style="font-size:10.5px;background:var(--g50);color:var(--g600);padding:3px 10px;border-radius:100px;border:1px solid rgba(41,138,61,.2);font-weight:500">GIS & Remote Sensing</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SERVICES -->
-<section id="services">
+<!-- OUR EXPERTISE / SERVICES -->
+<section class="services-section">
   <div class="container">
-    <div class="s-head rv">
-      <div class="label">Our Services</div>
-      <h2 class="s-title">What We Do</h2>
-      <p class="s-sub">A full spectrum of environmental consulting and research services, powered by advanced geospatial technology.</p>
+    <div class="sec-head rv">
+      <div class="sec-label">Our Expertise</div>
+      <h2 class="sec-title">Innovative Solutions for a Sustainable Future</h2>
+      <p class="sec-sub">A full spectrum of environmental consulting and research services, powered by advanced geospatial technology.</p>
     </div>
-    <div class="sv-grid stag">
-      <div class="sv-card tilt"><div class="sv-ico">🗺️</div><div class="sv-title">GIS & Spatial Analysis</div><p class="sv-desc">Advanced mapping, spatial data analysis and cartographic outputs for environmental and land-use planning decisions.</p><div class="sv-tags"><span class="sv-tag">ArcGIS</span><span class="sv-tag">QGIS</span><span class="sv-tag">Spatial DB</span></div></div>
-      <div class="sv-card tilt"><div class="sv-ico">🛰️</div><div class="sv-title">Remote Sensing</div><p class="sv-desc">Satellite imagery processing, land cover classification, vegetation monitoring and multi-temporal change detection.</p><div class="sv-tags"><span class="sv-tag">Sentinel</span><span class="sv-tag">Landsat</span><span class="sv-tag">MODIS</span></div></div>
-      <div class="sv-card tilt"><div class="sv-ico">🚁</div><div class="sv-title">UAV & Drone Surveys</div><p class="sv-desc">High-resolution drone-based aerial surveys for agricultural monitoring, disaster assessment and coastal mapping.</p><div class="sv-tags"><span class="sv-tag">DJI Drones</span><span class="sv-tag">Photogrammetry</span><span class="sv-tag">LiDAR</span></div></div>
-      <div class="sv-card tilt"><div class="sv-ico">🌊</div><div class="sv-title">Environmental Modeling</div><p class="sv-desc">Hydrological, flood risk, climate and ecosystem modeling to simulate scenarios and support evidence-based decisions.</p><div class="sv-tags"><span class="sv-tag">HEC-HMS</span><span class="sv-tag">SWAT</span><span class="sv-tag">MIKE FLOOD</span></div></div>
-      <div class="sv-card tilt"><div class="sv-ico">🌾</div><div class="sv-title">Agricultural Research</div><p class="sv-desc">Crop stress analysis, soil assessment, precision agriculture and climate-smart farming for rural communities.</p><div class="sv-tags"><span class="sv-tag">Crop Monitoring</span><span class="sv-tag">Soil Mapping</span><span class="sv-tag">NDVI</span></div></div>
-      <div class="sv-card tilt"><div class="sv-ico">📋</div><div class="sv-title">Policy & EIA Consulting</div><p class="sv-desc">Environmental Impact Assessments, policy briefs and advisory services aligned with Bangladesh DoE regulations.</p><div class="sv-tags"><span class="sv-tag">EIA</span><span class="sv-tag">Policy Briefs</span><span class="sv-tag">DoE</span></div></div>
+    <div class="sv-list stag">
+      <div class="sv-item">
+        <div class="sv-num">01</div>
+        <div>
+          <div class="sv-title">Environmental & Social Impact Assessment (ESIA)</div>
+          <p class="sv-desc">Environmental assessment is appropriate for both site-specific projects and broader programs or plans. EIRN delivers comprehensive ESIAs that analyze, monitor, and manage the intended and unintended social and environmental consequences of planned interventions — ensuring projects align with Bangladesh DoE regulations and international best practices.</p>
+          <div class="sv-tags"><span class="sv-tag">EIA</span><span class="sv-tag">Social Impact</span><span class="sv-tag">DoE Compliance</span></div>
+        </div>
+      </div>
+      <div class="sv-item">
+        <div class="sv-num">02</div>
+        <div>
+          <div class="sv-title">GIS, Remote Sensing & Drone Technology</div>
+          <p class="sv-desc">EIRN demonstrates exceptional expertise in GIS, remote sensing, and UAV technology, leveraging these advanced tools to revolutionize data collection, analysis, and visualization in environmental projects. By integrating GIS with remote sensing capabilities, we provide high-resolution geospatial data essential for precise site analysis, sustainable urban planning, and infrastructure safety.</p>
+          <div class="sv-tags"><span class="sv-tag">ArcGIS</span><span class="sv-tag">QGIS</span><span class="sv-tag">Google Earth Engine</span><span class="sv-tag">DJI Drones</span><span class="sv-tag">LiDAR</span></div>
+        </div>
+      </div>
+      <div class="sv-item">
+        <div class="sv-num">03</div>
+        <div>
+          <div class="sv-title">Hydrological Modeling & Flood Risk Analysis</div>
+          <p class="sv-desc">A hydrological model can generate streamflow estimates and trends over long periods. EIRN uses HEC-HMS, SWAT, and MIKE FLOOD to model seasonal flood extents, simulate hydrological scenarios, and generate evidence-based flood risk assessments for Bangladesh's complex river delta systems and haor wetlands.</p>
+          <div class="sv-tags"><span class="sv-tag">HEC-HMS</span><span class="sv-tag">SWAT</span><span class="sv-tag">MIKE FLOOD</span><span class="sv-tag">SAR Data</span></div>
+        </div>
+      </div>
+      <div class="sv-item">
+        <div class="sv-num">04</div>
+        <div>
+          <div class="sv-title">Agricultural Research & Precision Farming</div>
+          <p class="sv-desc">Crop stress analysis, soil health assessment, precision agriculture and climate-smart farming research for rural Bangladesh. Using UAV-derived multispectral imagery and NDVI analysis, EIRN helps identify crop stress, predict yields, and develop evidence-based recommendations for agricultural resilience under climate change.</p>
+          <div class="sv-tags"><span class="sv-tag">Crop Monitoring</span><span class="sv-tag">Soil Mapping</span><span class="sv-tag">NDVI</span><span class="sv-tag">UAV Survey</span></div>
+        </div>
+      </div>
+      <div class="sv-item">
+        <div class="sv-num">05</div>
+        <div>
+          <div class="sv-title">Climate Change Adaptation Strategies</div>
+          <p class="sv-desc">Adaptation strategies to address the impacts of climate change are crucial for reducing vulnerabilities and enhancing resilience across sectors. EIRN develops comprehensive strategies including infrastructure resilience planning, water resource optimization, climate-resilient agricultural practices, and ecosystem restoration — aligned with Bangladesh's national climate policies.</p>
+          <div class="sv-tags"><span class="sv-tag">Climate Modeling</span><span class="sv-tag">Risk Assessment</span><span class="sv-tag">Policy Briefs</span></div>
+        </div>
+      </div>
+      <div class="sv-item">
+        <div class="sv-num">06</div>
+        <div>
+          <div class="sv-title">Policy Advisory & Government Consulting</div>
+          <p class="sv-desc">Environmental Impact Assessments, policy briefs and advisory services aligned with Bangladesh DoE regulations. EIRN works hand-in-hand with government ministries, NGOs and international organizations to deliver evidence-based insights that drive policy and on-the-ground impact across Bangladesh's diverse ecological zones.</p>
+          <div class="sv-tags"><span class="sv-tag">EIA Reports</span><span class="sv-tag">Policy Briefs</span><span class="sv-tag">Government Advisory</span></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- TOOLS -->
-<section id="tools">
+<section class="tools-section">
   <div class="container">
     <div class="rv">
-      <div class="label">Technologies & Tools</div>
-      <h2 class="s-title">Our Technical Toolkit</h2>
-      <p class="s-sub">State-of-the-art platforms and software for precision environmental intelligence.</p>
+      <div class="sec-label">Technologies & Tools</div>
+      <h2 class="sec-title">Our Technical Toolkit</h2>
+      <p class="sec-sub">State-of-the-art platforms and software for precision environmental intelligence.</p>
     </div>
     <div class="tools-grid stag">
       <div class="tc"><div class="tc-ico">🗺️</div><div class="tc-n">ArcGIS / QGIS</div></div>
@@ -237,34 +281,37 @@
   <div class="container stats-inner stag">
     <div class="sb-item"><span class="sb-n"><span class="counter" data-target="20" data-suffix="+">20</span></span><div class="sb-l">Research Projects</div></div>
     <div class="sb-item"><span class="sb-n"><span class="counter" data-target="10" data-suffix="+">10</span></span><div class="sb-l">Partner Organizations</div></div>
-    <div class="sb-item"><span class="sb-n"><span class="counter" data-target="5">5</span><span class="sb-suffix">+</span></span><div class="sb-l">Years of Excellence</div></div>
+    <div class="sb-item"><span class="sb-n"><span class="counter" data-target="5">5</span><span style="font-size:1.8rem">+</span></span><div class="sb-l">Years of Excellence</div></div>
     <div class="sb-item"><span class="sb-n"><span class="counter" data-target="6">6</span></span><div class="sb-l">Core Service Areas</div></div>
   </div>
 </div>
 
-<!-- PROJECTS PREVIEW -->
-<section id="proj-prev">
+<!-- IMPRESSIVE PROJECTS -->
+<section class="projects-section">
   <div class="container">
-    <div class="s-head rv">
-      <div class="label">Research & Projects</div>
-      <h2 class="s-title">Featured Work</h2>
-      <p class="s-sub">Impactful research and consulting across Bangladesh — from the Sundarbans to urban Dhaka.</p>
+    <div class="sec-head rv">
+      <div class="sec-label">Impressive Projects</div>
+      <h2 class="sec-title">Featured Work</h2>
+      <p class="sec-quote">"Let our advance worrying become advance thinking and planning." — Winston Churchill</p>
     </div>
-    <div class="pj-grid-home stag">
-      <div class="pj-card"><div class="pj-img" style="background:linear-gradient(135deg,#1B4332,#2D6A4F)">🌿</div><div class="pj-body"><div class="pj-tag">Coastal Ecology</div><div class="pj-title">Sundarbans Climate Resilience Assessment</div><p class="pj-desc">Analyzing climate-induced changes on the world's largest mangrove ecosystem using multi-source satellite data.</p><div class="pj-meta"><span>🛰️ Remote Sensing</span><span>📅 2023–24</span></div></div></div>
+    <div class="pj-grid stag">
+      <div class="pj-card"><div class="pj-img" style="background:linear-gradient(135deg,#1B4332,#2D6A4F)">🌿</div><div class="pj-body"><div class="pj-tag">Coastal Ecology</div><div class="pj-title">Sundarbans Climate Resilience Assessment</div><p class="pj-desc">Analyzing climate-induced changes on the world's largest mangrove ecosystem using multi-source satellite data and GIS.</p><div class="pj-meta"><span>🛰️ Remote Sensing</span><span>📅 2023–24</span></div></div></div>
       <div class="pj-card"><div class="pj-img" style="background:linear-gradient(135deg,#184E77,#1E6091)">💧</div><div class="pj-body"><div class="pj-tag">Hydrological Modeling</div><div class="pj-title">Haor Wetland Flood Dynamics</div><p class="pj-desc">Modeling seasonal flood extents in northeastern Bangladesh's haor basins using SAR satellite data and hydrological models.</p><div class="pj-meta"><span>🌊 Flood Model</span><span>📅 2023</span></div></div></div>
       <div class="pj-card"><div class="pj-img" style="background:linear-gradient(135deg,#3a5220,#5a7a30)">🏙️</div><div class="pj-body"><div class="pj-tag">Urban Environment</div><div class="pj-title">Dhaka Urban Heat Island Mapping</div><p class="pj-desc">Spatiotemporal heat island analysis using Landsat thermal data and machine learning classification algorithms.</p><div class="pj-meta"><span>🌡️ Thermal Analysis</span><span>📅 2022–23</span></div></div></div>
     </div>
-    <div class="pj-cta rv"><a href="projects.html" class="btn btn-og">View All Projects <span class="arr">→</span></a></div>
+    <div style="text-align:center;margin-top:2.5rem" class="rv">
+      <a href="projects.html" class="btn btn-o">View All Projects <span class="arr">→</span></a>
+    </div>
   </div>
 </section>
 
-<!-- PARTNERS -->
-<section id="partners">
+<!-- VALUABLE CLIENTS & PARTNERS -->
+<section class="partners-section">
   <div class="container">
-    <div class="rv" style="text-align:center">
-      <div class="label" style="justify-content:center"><span></span>Partners &amp; Collaborators</div>
-      <h2 class="s-title" style="text-align:center">We Work With</h2>
+    <div class="sec-head rv" style="text-align:center">
+      <div class="sec-label" style="justify-content:center">Valuable Clients & Partners</div>
+      <h2 class="sec-title">We Work With</h2>
+      <p class="sec-quote" style="text-align:center">"Do what you do so well that they will want to see it again and bring their friends." — Walt Disney</p>
     </div>
     <div class="pills-row rv">
       <div class="pill">🏛️ Government of Bangladesh</div>
@@ -286,7 +333,7 @@
     <p>Whether you're a government body, NGO or private organization — we'd love to support your environmental goals.</p>
     <div class="cta-acts">
       <a href="contact.html" class="btn btn-p">Get In Touch <span class="arr">→</span></a>
-      <a href="about.html" class="btn btn-gh">Learn About EIRN</a>
+      <a href="about.html" class="btn btn-w">Learn About EIRN</a>
     </div>
   </div>
 </div>
@@ -295,37 +342,59 @@
 <footer>
   <div class="ft-grid">
     <div>
-      <div class="ft-nm">EIRN</div>
-      <p class="ft-desc">Environmental Innovation &amp; Research Network — advancing ecological science for a resilient Bangladesh through geospatial technology and evidence-based research.</p>
-      <div class="ft-soc">
-        <a href="#" title="LinkedIn">🔗</a>
-        <a href="#" title="Twitter">🐦</a>
-        <a href="#" title="Facebook">📘</a>
-        <a href="#" title="ResearchGate">🔬</a>
+      <div class="ft-brand">
+        <div class="ft-logo"><span style="font-family:var(--ff-d);color:#fff;font-size:15px">EIRN</span></div>
+        <div class="ft-nm">EIRN</div>
+        <p class="ft-desc">Environmental Innovation & Research Network — advancing ecological science for a resilient Bangladesh through geospatial technology and evidence-based research.</p>
+        <div class="ft-soc">
+          <a href="#" title="LinkedIn">🔗</a>
+          <a href="#" title="Twitter">🐦</a>
+          <a href="#" title="Facebook">📘</a>
+          <a href="#" title="ResearchGate">🔬</a>
+        </div>
+      </div>
+      <div class="ft-certs">
+        <span class="ft-cert">ISO 9001</span>
+        <span class="ft-cert">ISO 14001</span>
+        <span class="ft-cert">GIS Certified</span>
       </div>
     </div>
-    <div class="ft-col"><h4>Pages</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="projects.html">Projects</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-    <div class="ft-col"><h4>Services</h4><ul><li><a href="about.html#services">GIS & Spatial Analysis</a></li><li><a href="about.html#services">Remote Sensing</a></li><li><a href="about.html#services">UAV Surveys</a></li><li><a href="about.html#services">Environmental Modeling</a></li></ul></div>
-    <div class="ft-col"><h4>Contact</h4><ul><li><a href="mailto:contact@eirn.org">contact@eirn.org</a></li><li><a href="#">eirn.com.bd</a></li><li><a href="#">Dhaka, Bangladesh</a></li></ul></div>
+    <div class="ft-col">
+      <h4>Important Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="projects.html">Our Projects</a></li>
+        <li><a href="about.html#services">Our Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="about.html#services">GIS & Spatial Analysis</a></li>
+        <li><a href="about.html#services">Remote Sensing</a></li>
+        <li><a href="about.html#services">UAV Surveys</a></li>
+        <li><a href="about.html#services">Hydrological Modeling</a></li>
+        <li><a href="about.html#services">EIA Consulting</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h4>Contact</h4>
+      <div class="ft-contact-item"><span class="ft-contact-ico">📞</span><div class="ft-contact-val"><a href="tel:+880000000000">+880 0000-000000</a></div></div>
+      <div class="ft-contact-item"><span class="ft-contact-ico">✉</span><div class="ft-contact-val"><a href="mailto:contact@eirn.org">contact@eirn.org</a><br><a href="mailto:ceo@eirn.org">ceo@eirn.org</a></div></div>
+      <div class="ft-contact-item"><span class="ft-contact-ico">📍</span><div class="ft-contact-val">House B/XX, Road 12,<br>Dhaka–1206, Bangladesh</div></div>
+    </div>
   </div>
   <div class="ft-bot">
-    <span>© 2025 <em>EIRN</em>. All rights reserved.</span>
-    <span>Environmental Innovation &amp; Research Network · Dhaka, Bangladesh</span>
+    <span>© 2025 <em>EIRN</em>. All rights reserved. Environmental Innovation & Research Network · Dhaka, Bangladesh</span>
+    <span>Designed for impact.</span>
   </div>
 </footer>
 
 <script src="script.js"></script>
 <script>
-// Hero canvas: white particles filling the full hero section
-initParticles(document.getElementById('hero-canvas'),{
-  count:80, speed:.35,
-  color:'rgba(255,255,255,.65)',
-  lineColor:'rgba(255,255,255,.18)',
-  maxDist:140,
-  fullWindow:true
-});
-
-// Typing animation
+initParticles(document.getElementById('hero-canvas'),{count:80,speed:.3,fullWindow:true});
 typeText(document.getElementById('hero-type-el'),[
   'Solving environmental challenges with data.',
   'GIS · Remote Sensing · UAV · Modeling.',
